@@ -56,7 +56,7 @@ const newsItems = ref([
         <div class="text-center">
           <div class="card-hover inline-block">
             <img
-              src="https://assets.pokemon.com/assets/cms2/img/cards/web/SWSH4/SWSH4_EN_20.png"
+              src="https://images.pokemontcg.io/neo4/109_hires.png"
               alt="Charizard VMAX"
               class="mx-auto mb-4 border-4 border-yellow-400 rounded"
             />

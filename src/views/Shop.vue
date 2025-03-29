@@ -10,7 +10,7 @@ const cards = ref([
     id: 1,
     name: 'Pikachu',
     price: 29.99,
-    image: 'https://assets.pokemon.com/assets/cms2/img/cards/web/SM10/SM10_EN_55.png',
+    image: 'https://images.pokemontcg.io/base1/58_hires.png',
     rarity: 'Rare',
     animated: '/gifs/pokemon/pikachu.gif'
   },
@@ -18,7 +18,7 @@ const cards = ref([
     id: 2,
     name: 'Charizard',
     price: 199.99,
-    image: 'https://assets.pokemon.com/assets/cms2/img/cards/web/SWSH4/SWSH4_EN_20.png',
+    image: 'https://images.pokemontcg.io/base1/4_hires.png',
     rarity: 'Ultra Rare',
     animated: '/gifs/pokemon/charmander.gif'
   },
@@ -26,7 +26,7 @@ const cards = ref([
     id: 3,
     name: 'Mewtwo',
     price: 149.99,
-    image: 'https://assets.pokemon.com/assets/cms2/img/cards/web/SM12/SM12_EN_75.png',
+    image: 'https://images.pokemontcg.io/neo4/109_hires.png',
     rarity: 'Secret Rare',
     animated: '/gifs/pokemon/animepika.gif'
   },
@@ -34,7 +34,7 @@ const cards = ref([
     id: 4,
     name: 'Blastoise',
     price: 89.99,
-    image: 'https://assets.pokemon.com/assets/cms2/img/cards/web/SM12/SM12_EN_25.png',
+    image: 'https://images.pokemontcg.io/base4/2_hires.png',
     rarity: 'Holo Rare',
     animated: '/gifs/pokemon/squirtle.gif'
   },
@@ -42,7 +42,7 @@ const cards = ref([
     id: 5,
     name: 'Venusaur',
     price: 79.99,
-    image: 'https://assets.pokemon.com/assets/cms2/img/cards/web/SM12/SM12_EN_1.png',
+    image: 'https://images.pokemontcg.io/basep/13_hires.png',
     rarity: 'Holo Rare',
     animated: '/gifs/pokemon/bulbasaur.gif'
   },
@@ -50,7 +50,7 @@ const cards = ref([
     id: 6,
     name: 'Magikarp',
     price: 0.99,
-    image: 'https://assets.pokemon.com/assets/cms2/img/cards/web/SM9/SM9_EN_32.png',
+    image: 'https://images.pokemontcg.io/base5/47_hires.png',
     rarity: 'Common',
     animated: '/gifs/pokemon/star.gif'
   }
