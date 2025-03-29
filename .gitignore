@@ -48,7 +48,8 @@ coverage
 .env.*
 !.env.example
 
-# Other
-.netlify/
-.deploy/
-stats.html
+# NodeJS
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lockb
