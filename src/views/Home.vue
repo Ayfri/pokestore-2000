@@ -22,10 +22,13 @@ const newsItems = ref([
 
 <template>
   <div>
-    <div class="flex gap-4 items-center mb-8">
-      <img src="/gifs/pokemon/star.gif" alt="Star" class="h-8" />
-      <h2 class="text-2xl font-bold rainbow-text">Welcome to Pokéstore 2000!</h2>
-      <img src="/gifs/pokemon/star.gif" alt="Star" class="h-8" />
+    <div class="flex flex-col items-center mb-8">
+      <img src="/pokestore.webp" alt="Pokéstore" class="h-24 mb-2" />
+      <div class="flex items-center">
+        <img src="/gifs/pokemon/star.gif" alt="Star" class="h-8" />
+        <h2 class="text-2xl font-bold rainbow-text">Your #1 Pokémon Cards Source!</h2>
+        <img src="/gifs/pokemon/star.gif" alt="Star" class="h-8" />
+      </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

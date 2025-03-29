@@ -1,6 +1,8 @@
 # ★★★ POKÉSTORE 2000 ★★★
 
-![Welcome to Pokéstore](public/gifs/pokemon/pikachu.gif) ![Pokéball](public/gifs/pokemon/pokeball.gif) ![Welcome to Pokéstore](public/gifs/pokemon/pikachu.gif)
+<p align="center">
+  <img src="public/pokestore.webp" alt="Pokéstore Logo" width="400">
+</p>
 
 ## WELCOME TRAINERS!!! ^_^
 
