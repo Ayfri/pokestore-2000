@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", "Comic Sans MS", sans-serif;
+  background: #000080;
+  color: #000;
+  cursor: url('https://cur.cursors-4u.net/cursors/cur-1/cur1.cur'), auto;
+}
+
+body {
+  scrollbar-face-color: #9370DB;
+  scrollbar-shadow-color: #483D8B;
+  scrollbar-highlight-color: #D8BFD8;
+  scrollbar-3dlight-color: #9370DB;
+  scrollbar-darkshadow-color: #4B0082;
+  scrollbar-track-color: #C0C0C0;
+  scrollbar-arrow-color: #9400D3;
+  overflow-x: hidden; /* Pour éviter les barres de défilement horizontales */
+}
+
+.retro-button {
+  @apply bg-gradient-metal border-2 border-gray-400 shadow-outer-thick
+         hover:shadow-inner-thick active:shadow-inner-thick
+         px-4 py-2 font-bold transition-all duration-100;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.retro-card {
+  @apply bg-white border-2 border-gray-400 shadow-outer-thick p-4
+         hover:shadow-lg transition-shadow duration-200;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.5));
+}
+
+.retro-input {
+  @apply border-2 border-gray-400 shadow-inner-thick px-3 py-2
+         focus:outline-none focus:border-blue-500;
+}
+
+.retro-container {
+  @apply bg-gradient-metal border-2 border-gray-300 shadow-lg p-6 rounded;
+}
+
+.marquee {
+  @apply overflow-hidden whitespace-nowrap bg-black text-yellow-300 p-2 font-bold;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.nav-link {
+  @apply px-4 py-2 retro-button no-underline text-black hover:text-blue-700
+         bg-gradient-to-b from-yellow-200 to-yellow-400
+         hover:from-yellow-300 hover:to-yellow-500;
+}
+
+.nav-link.router-link-active {
+  @apply shadow-inner-thick bg-gradient-to-b from-blue-200 to-blue-400;
+}
+
+.under-construction {
+  background: repeating-linear-gradient(
+    45deg,
+    #000,
+    #000 10px,
+    #ff0 10px,
+    #ff0 20px
+  );
+}
+
+.hit-counter {
+  @apply bg-black text-green-400 font-mono px-2 py-1 text-sm inline-block;
+  border: 2px inset #808080;
+}
+
+.guestbook-entry {
+  @apply border-b-2 border-blue-300 py-4 bg-gradient-to-r from-blue-50 to-purple-50;
+}
+
+.flame {
+  filter: url(#fire);
+  animation: flame 0.5s infinite;
+}
+
+@keyframes flame {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.star-bg {
+  background-image: url('/gifs/pokemon/stars.gif');
+}
+
+.rainbow-text {
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: rainbow 5s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.retro-title {
+  @apply text-4xl font-bold text-center;
+  text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
+}
+
+.card-hover {
+  transition: transform 0.2s;
+}
+
+.card-hover:hover {
+  transform: rotate(2deg) scale(1.05);
+}
+
+.news-container {
+  @apply bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300;
+}
+
+.cool-link {
+  @apply text-blue-600 underline decoration-dotted hover:text-red-600 visited:text-purple-600;
+}
+
+/* Éléments typiques des sites années 2000 */
+hr {
+  height: 15px;
+  border: none;
+  background: url('/gifs/pokemon/divider.gif') repeat-x;
+  margin: 1rem 0;
+}
+
+/* Bordures stylisées et décorations */
+.border-double {
+  border-style: double;
+}
+
+.border-ridge {
+  border-style: ridge;
+}
+
+.border-groove {
+  border-style: groove;
+}
+
+.border-inset {
+  border-style: inset;
+}
+
+/* Effets de texte clignotant et défilant */
+.text-shadow-cool {
+  text-shadow: 2px 2px 0 #fff, 3px 3px 0 #000;
+}
+
+/* Animation pour "Nouveau" */
+.new-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Table avec style rétro */
+table.retro-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid #000080;
+}
+
+table.retro-table th {
+  background-color: #000080;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+}
+
+table.retro-table td {
+  border: 1px solid #000080;
+  padding: 5px;
+  background-color: #f0f0ff;
+}
+
+table.retro-table tr:nth-child(even) td {
+  background-color: #e0e0ff;
+}
+
+/* Éléments rétro supplémentaires */
+.retro-button-3d {
+  background: #c0c0c0;
+  border-width: 2px;
+  border-style: outset;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.retro-button-3d:active {
+  border-style: inset;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* Menu déroulant style années 2000 */
+select.retro-select {
+  background-color: #c0c0c0;
+  border: 2px inset #808080;
+  font-family: "MS Sans Serif", sans-serif;
+  padding: 2px;
+}
+
+/* Barre de progression style années 2000 */
+.retro-progress {
+  width: 100%;
+  height: 20px;
+  background-color: #c0c0c0;
+  border: 2px inset #808080;
+}
+
+.retro-progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #0000ff, #00ffff);
+}
+
+/* Éléments de mise en page en style tableaux */
+.layout-table {
+  @apply w-full border-collapse;
+}
+
+.layout-table-cell {
+  @apply border border-gray-400 p-2;
+}
+
+/* Style pour les "webring" */
+.webring-badge {
+  @apply bg-white border-2 border-blue-700 p-2 inline-block;
+  box-shadow: 3px 3px 0 #000080;
+}
+
+/* Style pour le compteur de visiteurs */
+.visitor-counter {
+  @apply bg-black text-green-400 font-mono text-sm inline-block border-2 p-1;
+  border-style: inset;
+}
