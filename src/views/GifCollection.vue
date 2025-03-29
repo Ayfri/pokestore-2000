@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// Chemin relatif vers les GIFs téléchargés
+// Chemin relatif vers les GIFs tÃ©lÃ©chargÃ©s
 const basePath = '/gifs/pokemon/'
 
-// Liste des GIFs Pokémon groupés par catégorie
+// Liste des GIFs PokÃ©mon groupÃ©s par catÃ©gorie
 const categories = ref([
   {
-    name: "Pokémon Starters",
+    name: "PokÃ©mon Starters",
     gifs: [
       {
         filename: "pikachu.gif",
@@ -32,7 +32,7 @@ const categories = ref([
     ]
   },
   {
-    name: "Autres Pokémon",
+    name: "Autres PokÃ©mon",
     gifs: [
       {
         filename: "magikarp.gif",
@@ -51,7 +51,7 @@ const categories = ref([
       },
       {
         filename: "star.gif",
-        description: "Star Pokémon",
+        description: "Star PokÃ©mon",
         url: basePath + "star.gif"
       },
       {
@@ -67,11 +67,11 @@ const categories = ref([
     ]
   },
   {
-    name: "Pokéballs",
+    name: "PokÃ©balls",
     gifs: [
       {
         filename: "pokeball.gif",
-        description: "Poké Ball",
+        description: "PokÃ© Ball",
         url: basePath + "pokeball.gif"
       },
       {
@@ -92,7 +92,7 @@ const categories = ref([
     ]
   },
   {
-    name: "Éléments de design",
+    name: "Ã‰lÃ©ments de design",
     gifs: [
       {
         filename: "hot.gif",
@@ -116,7 +116,7 @@ const categories = ref([
       },
       {
         filename: "newpoketwo.gif",
-        description: "Poké icon",
+        description: "PokÃ© icon",
         url: basePath + "newpoketwo.gif"
       },
       {
@@ -158,13 +158,13 @@ const categories = ref([
   <div>
     <div class="flex gap-4 items-center mb-6">
       <img src="/gifs/pokemon/pokeball.gif" alt="Pokeball" class="h-8" />
-      <h2 class="text-2xl font-bold rainbow-text">Pokémon GIF Collection</h2>
+      <h2 class="text-2xl font-bold rainbow-text">PokÃ©mon GIF Collection</h2>
       <img src="/gifs/pokemon/pokeball.gif" alt="Pokeball" class="h-8" />
     </div>
 
     <div class="mb-4 p-2 bg-yellow-100 border border-yellow-400 text-center">
       <img src="/gifs/pokemon/pikachu.gif" alt="Pikachu" class="inline h-6 mr-2" />
-      <span>Use these GIFs to decorate your own Pokémon site!</span>
+      <span>Use these GIFs to decorate your own PokÃ©mon site!</span>
       <img src="/gifs/pokemon/pikachu.gif" alt="Pikachu" class="inline h-6 ml-2" />
     </div>
 
