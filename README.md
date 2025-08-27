@@ -31,7 +31,7 @@ THIS IS THE **OFFICIAL** REPOSITORY FOR POKÉSTORE 2000 - THE #1 POKÉMON CARD S
 - Mouse
 - Sound Card (for MUSIC)
 - 800x600 screen resolution (1024x768 RECOMMENDED)
-- Node.js v16+
+- Node.js v22+
 - Vue 3
 - Vite
 
@@ -66,4 +66,4 @@ POKÉMON and all related CHARACTERS are property of NINTENDO. This is a FAN SITE
 
 -------------------------------
 © 2000 POKÉSTORE. ALL RIGHTS RESERVED.
-VERSION 1.8.5 BETA - LAST UPDATED: 04/15/2000
+VERSION 1.8.5 BETA - LAST UPDATED: 08/27/2000

@@ -89,7 +89,7 @@ onMounted(() => {
               <div class="border border-blue-500 p-2 bg-blue-50">
                 <div class="font-bold underline mb-2">SITE INFO</div>
                 <div class="hit-counter mb-2 bg-black text-green-400 px-2 py-1 font-mono">HITS: 000012942</div>
-                <div class="text-xs mb-1">Last Updated: 04/15/2000</div>
+                <div class="text-xs mb-1">Last Updated: 08/27/2000</div>
                 <div class="text-xs">Download time: 56k - 8.2 sec</div>
                 <div class="mt-2 text-xs">
                   <img src="/gifs/pokemon/bestview.gif" alt="Valid HTML!" width="88" height="31" class="inline-block my-1" />
