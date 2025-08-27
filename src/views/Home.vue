@@ -48,7 +48,7 @@ const newsItems = ref([
         </div>
       </div>
 
-      <div class="retro-card bg-gradient-to-r from-red-100 to-yellow-100">
+      <div class="retro-card bg-linear-to-r from-red-100 to-yellow-100">
         <div class="flex items-center gap-2 mb-4">
           <img src="/gifs/pokemon/hot.gif" alt="Hot" class="h-6" />
           <h3 class="text-xl font-bold">Featured Card</h3>
@@ -71,7 +71,7 @@ const newsItems = ref([
     </div>
 
     <div class="mt-8 p-4 under-construction">
-      <div class="bg-gradient-to-r from-yellow-100 to-orange-100 p-4 text-center border-2 border-yellow-400">
+      <div class="bg-linear-to-r from-yellow-100 to-orange-100 p-4 text-center border-2 border-yellow-400">
         <img src="/gifs/pokemon/animepika.gif" alt="Under Construction" class="inline-block" />
         <p class="font-bold mt-2 rainbow-text text-xl">More features coming soon!</p>
         <img src="/gifs/pokemon/animepika.gif" alt="Under Construction" class="inline-block" />

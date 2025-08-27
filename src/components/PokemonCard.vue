@@ -36,7 +36,7 @@ const emit = defineEmits<{
         <span class="text-lg font-bold text-green-700">${{ card.price }}</span>
         <button
           @click="emit('addToCart', card.id)"
-          class="retro-button"
+          class="btn-retro"
         >
           <img src="/gifs/pokemon/pokeball.gif" alt="Cart" class="inline h-4 mr-1" />
           Add to Cart

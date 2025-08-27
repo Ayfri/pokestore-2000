@@ -22,10 +22,10 @@ onMounted(() => {
       <img src="/gifs/pokemon/construction.gif" alt="Under Construction" class="inline-block h-6" />
     </div>
 
-    <header class="retro-container mb-8 bg-gradient-to-r from-blue-100 to-purple-100 border-4 border-double border-blue-700">
+    <header class="retro-container mb-8 bg-linear-to-r from-blue-100 to-purple-100 border-4 border-double border-blue-700">
       <div class="flex justify-between items-center mb-4">
         <img src="/gifs/pokemon/pokeball.gif" alt="Pokeball" class="h-12" />
-        <div class="text-center flex-grow">
+        <div class="text-center grow">
           <img src="/pokestore.webp" alt="Pokéstore 2000" class="h-20 mx-auto" />
         </div>
         <div class="text-right">
@@ -70,11 +70,11 @@ onMounted(() => {
       </div>
     </header>
 
-    <main class="retro-container bg-gradient-to-r from-yellow-50 to-orange-50 border border-dashed border-orange-300">
+    <main class="retro-container bg-linear-to-r from-yellow-50 to-orange-50 border border-dashed border-orange-300">
       <router-view></router-view>
     </main>
 
-    <footer class="mt-8 text-center text-sm retro-container bg-gradient-to-r from-green-100 to-blue-100 border-t-4 border-blue-400">
+    <footer class="mt-8 text-center text-sm retro-container bg-linear-to-r from-green-100 to-blue-100 border-t-4 border-blue-400">
       <table class="w-full border-separate border-spacing-2">
         <tbody>
           <tr>

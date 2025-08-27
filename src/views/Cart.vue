@@ -111,7 +111,7 @@ function checkout() {
       <img src="/gifs/pokemon/psyduck.gif" alt="Empty Cart" class="mx-auto h-16 mb-4" />
       <p class="text-lg mb-2">Your cart is empty!</p>
       <p class="text-sm text-gray-600 mb-4">Visit our shop to find some awesome Pokémon cards</p>
-      <router-link to="/shop" class="retro-button">
+      <router-link to="/shop" class="btn-retro">
         <img src="/gifs/pokemon/pokeball.gif" alt="Shop" class="inline h-4 mr-1" />
         Go to Shop
       </router-link>
@@ -164,7 +164,7 @@ function checkout() {
       </div>
 
       <div class="flex justify-between mt-6">
-        <router-link to="/shop" class="retro-button">
+        <router-link to="/shop" class="btn-retro">
           <img src="/gifs/pokemon/newpoketwo.gif" alt="Continue Shopping" class="inline h-4 mr-1" />
           Continue Shopping
         </router-link>

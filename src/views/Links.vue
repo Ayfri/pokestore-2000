@@ -117,7 +117,7 @@ const fanClubs = [
       <hr class="mb-4 border-dashed border-blue-300" />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div v-for="club in fanClubs" :key="club.name" class="retro-card p-3 bg-gradient-to-b from-blue-50 to-purple-50">
+        <div v-for="club in fanClubs" :key="club.name" class="retro-card p-3 bg-linear-to-b from-blue-50 to-purple-50">
           <div class="flex flex-col items-center">
             <img :src="`/gifs/pokemon/${club.icon}`" :alt="club.name" class="h-12 mb-2" />
             <h4 class="font-bold text-sm">{{ club.name }}</h4>

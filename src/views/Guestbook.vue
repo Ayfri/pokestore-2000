@@ -60,7 +60,7 @@ const addEntry = () => {
 
     <hr class="mb-8" />
 
-    <div class="retro-card mb-8 bg-gradient-to-r from-blue-100 to-purple-100">
+    <div class="retro-card mb-8 bg-linear-to-r from-blue-100 to-purple-100">
       <div class="flex items-center gap-2 mb-4">
         <img src="/gifs/pokemon/pencil.gif" alt="Sign" class="h-6" />
         <h3 class="text-xl font-bold">Sign the Guestbook!</h3>
@@ -84,7 +84,7 @@ const addEntry = () => {
           <input v-model="newEntry.webring" class="retro-input w-full" />
         </div>
         <div class="text-center mt-6">
-          <button type="submit" class="retro-button">
+          <button type="submit" class="btn-retro">
             <img src="/gifs/pokemon/pikachu.gif" alt="Sign" class="inline-block h-6 mr-2" />
             Sign Guestbook
           </button>

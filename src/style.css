@@ -1,6 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@source './index.html' './src/**/*.{vue,js,ts,jsx,tsx}';
+
+@theme {
+  --shadow-inner-thick: inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-outer-thick: 3px 3px 6px rgba(0, 0, 0, 0.4);
+
+  --background-image-gradient-metal: linear-gradient(
+    145deg,
+    #e6e6e6 0%,
+    #ffffff 100%
+  );
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root {
   font-family: "MS Sans Serif", "Microsoft Sans Serif", "Comic Sans MS", sans-serif;
@@ -20,7 +49,7 @@ body {
   overflow-x: hidden; /* Pour éviter les barres de défilement horizontales */
 }
 
-.retro-button {
+.btn-retro {
   @apply bg-gradient-metal border-2 border-gray-400 shadow-outer-thick
          hover:shadow-inner-thick active:shadow-inner-thick
          px-4 py-2 font-bold transition-all duration-100;
@@ -35,11 +64,11 @@ body {
 
 .retro-input {
   @apply border-2 border-gray-400 shadow-inner-thick px-3 py-2
-         focus:outline-none focus:border-blue-500;
+         focus:outline-hidden focus:border-blue-500;
 }
 
 .retro-container {
-  @apply bg-gradient-metal border-2 border-gray-300 shadow-lg p-6 rounded;
+  @apply bg-gradient-metal border-2 border-gray-300 shadow-lg p-6 rounded-sm;
 }
 
 .marquee {
@@ -61,13 +90,27 @@ body {
 }
 
 .nav-link {
-  @apply px-4 py-2 retro-button no-underline text-black hover:text-blue-700
-         bg-gradient-to-b from-yellow-200 to-yellow-400
+  @apply px-4 py-2 no-underline text-black hover:text-blue-700
+         bg-linear-to-b from-yellow-200 to-yellow-400
          hover:from-yellow-300 hover:to-yellow-500;
+  background-image: var(--background-image-gradient-metal);
+  border: 2px solid #9ca3af;
+  box-shadow: var(--shadow-outer-thick);
+  font-weight: bold;
+  transition: all 0.1s;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.nav-link:hover {
+  box-shadow: var(--shadow-inner-thick);
+}
+
+.nav-link:active {
+  box-shadow: var(--shadow-inner-thick);
 }
 
 .nav-link.router-link-active {
-  @apply shadow-inner-thick bg-gradient-to-b from-blue-200 to-blue-400;
+  @apply shadow-inner-thick bg-linear-to-b from-blue-200 to-blue-400;
 }
 
 .under-construction {
@@ -86,7 +129,7 @@ body {
 }
 
 .guestbook-entry {
-  @apply border-b-2 border-blue-300 py-4 bg-gradient-to-r from-blue-50 to-purple-50;
+  @apply border-b-2 border-blue-300 py-4 bg-linear-to-r from-blue-50 to-purple-50;
 }
 
 .flame {
@@ -130,7 +173,7 @@ body {
 }
 
 .news-container {
-  @apply bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300;
+  @apply bg-linear-to-r from-purple-100 to-pink-100 border-2 border-purple-300;
 }
 
 .cool-link {
