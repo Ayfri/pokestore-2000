@@ -76,55 +76,57 @@ onMounted(() => {
 
     <footer class="mt-8 text-center text-sm retro-container bg-gradient-to-r from-green-100 to-blue-100 border-t-4 border-blue-400">
       <table class="w-full border-separate border-spacing-2">
-        <tr>
-          <td class="text-center" colspan="3">
-            <marquee scrollamount="3" behavior="alternate">
-              <span class="text-red-600 font-bold">★★★ THANK YOU FOR VISITING POKÉSTORE 2000! ★★★</span>
-            </marquee>
-          </td>
-        </tr>
-        <tr>
-          <td width="33%" class="align-top">
-            <div class="border border-blue-500 p-2 bg-blue-50">
-              <div class="font-bold underline mb-2">SITE INFO</div>
-              <div class="hit-counter mb-2 bg-black text-green-400 px-2 py-1 font-mono">HITS: 000012942</div>
-              <div class="text-xs mb-1">Last Updated: 04/15/2000</div>
-              <div class="text-xs">Download time: 56k - 8.2 sec</div>
-              <div class="mt-2 text-xs">
-                <img src="/gifs/pokemon/bestview.gif" alt="Valid HTML!" width="88" height="31" class="inline-block my-1" />
-                <img src="/gifs/pokemon/ultraball.gif" alt="Valid CSS!" width="88" height="31" class="inline-block my-1" />
+        <tbody>
+          <tr>
+            <td class="text-center" colspan="3">
+              <marquee scrollamount="3" behavior="alternate">
+                <span class="text-red-600 font-bold">★★★ THANK YOU FOR VISITING POKÉSTORE 2000! ★★★</span>
+              </marquee>
+            </td>
+          </tr>
+          <tr>
+            <td width="33%" class="align-top">
+              <div class="border border-blue-500 p-2 bg-blue-50">
+                <div class="font-bold underline mb-2">SITE INFO</div>
+                <div class="hit-counter mb-2 bg-black text-green-400 px-2 py-1 font-mono">HITS: 000012942</div>
+                <div class="text-xs mb-1">Last Updated: 04/15/2000</div>
+                <div class="text-xs">Download time: 56k - 8.2 sec</div>
+                <div class="mt-2 text-xs">
+                  <img src="/gifs/pokemon/bestview.gif" alt="Valid HTML!" width="88" height="31" class="inline-block my-1" />
+                  <img src="/gifs/pokemon/ultraball.gif" alt="Valid CSS!" width="88" height="31" class="inline-block my-1" />
+                </div>
               </div>
-            </div>
-          </td>
-          <td width="33%" class="align-top">
-            <div class="border border-blue-500 p-2 bg-blue-50 h-full flex flex-col">
-              <div class="font-bold underline mb-2">CONTACT US</div>
-              <div class="flex items-center justify-center mb-2">
-                <img src="/gifs/pokemon/pikachu.gif" alt="Pikachu" class="h-8" />
+            </td>
+            <td width="33%" class="align-top">
+              <div class="border border-blue-500 p-2 bg-blue-50 h-full flex flex-col">
+                <div class="font-bold underline mb-2">CONTACT US</div>
+                <div class="flex items-center justify-center mb-2">
+                  <img src="/gifs/pokemon/pikachu.gif" alt="Pikachu" class="h-8" />
+                </div>
+                <div class="text-xs mb-1">
+                  <a href="mailto:webmaster@pokéstore-2000.com" class="cool-link">
+                    <img src="/gifs/pokemon/email.gif" alt="Email" class="inline h-4 mr-1" />EMAIL
+                  </a>
+                </div>
+                <div class="text-xs mb-1">
+                  <img src="/gifs/pokemon/pokeball.gif" alt="ICQ" class="inline h-4 mr-1" />ICQ: 12345678
+                </div>
+                <div class="text-xs">
+                  <img src="/gifs/pokemon/magikarp.gif" alt="AIM" class="inline h-4 mr-1" />AIM: PokeStore2000
+                </div>
               </div>
-              <div class="text-xs mb-1">
-                <a href="mailto:webmaster@pokéstore-2000.com" class="cool-link">
-                  <img src="/gifs/pokemon/email.gif" alt="Email" class="inline h-4 mr-1" />EMAIL
-                </a>
+            </td>
+            <td width="33%" class="align-top">
+              <div class="border border-blue-500 p-2 bg-blue-50 flex flex-col">
+                <div class="font-bold underline mb-2">COPYRIGHT</div>
+                <div class="text-xs mb-2">© 2000 Pokéstore. All Rights Reserved.</div>
+                <div class="text-xs mb-2">Pokémon and all related characters are © Nintendo / Game Freak.</div>
+                <div class="text-xs font-bold text-red-600">NO FRAMES • NO JAVA • NO FLASH</div>
+                <div class="text-xs mt-2 opacity-50">v1.8.5 BETA</div>
               </div>
-              <div class="text-xs mb-1">
-                <img src="/gifs/pokemon/pokeball.gif" alt="ICQ" class="inline h-4 mr-1" />ICQ: 12345678
-              </div>
-              <div class="text-xs">
-                <img src="/gifs/pokemon/magikarp.gif" alt="AIM" class="inline h-4 mr-1" />AIM: PokeStore2000
-              </div>
-            </div>
-          </td>
-          <td width="33%" class="align-top">
-            <div class="border border-blue-500 p-2 bg-blue-50 flex flex-col">
-              <div class="font-bold underline mb-2">COPYRIGHT</div>
-              <div class="text-xs mb-2">© 2000 Pokéstore. All Rights Reserved.</div>
-              <div class="text-xs mb-2">Pokémon and all related characters are © Nintendo / Game Freak.</div>
-              <div class="text-xs font-bold text-red-600">NO FRAMES • NO JAVA • NO FLASH</div>
-              <div class="text-xs mt-2 opacity-50">v1.8.5 BETA</div>
-            </div>
-          </td>
-        </tr>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <div class="text-xs mt-4 text-gray-600">This page optimized for 800x600 resolution</div>
       <div class="text-xs text-blue-700 blink">[ DOWNLOAD THE POKÉSTORE TOOLBAR NOW! ]</div>
@@ -132,7 +134,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .blink {
   animation: blinker 1s step-start infinite;
 }
