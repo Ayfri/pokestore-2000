@@ -7,11 +7,6 @@ $RECYCLE.BIN/
 # Logs
 logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
 # Build Directories
 node_modules
@@ -19,8 +14,6 @@ dist
 dist-ssr
 *.local
 coverage
-.eslintcache
-.stylelintcache
 
 # Temporary Files
 .temp
@@ -30,29 +23,9 @@ coverage
 
 # Editor directories and files
 .idea
-.vscode/*
-!.vscode/extensions.json
-!.vscode/launch.json
-!.vscode/settings.json
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-.DS_Store
-.AppleDouble
-.LSOverride
+.vscode/
 
 # Environment Variables
 .env
 .env.*
 !.env.example
-
-# NodeJS
-package-lock.json
-pnpm-lock.yaml
-yarn.lock
-bun.lockb
-
-# TS Build Info
-*.tsbuildinfo
