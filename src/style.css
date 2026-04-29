@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --background-image-gradient-metal: linear-gradient(
@@ -69,14 +69,10 @@ body {
 }
 
 .nav-link {
-  @apply px-4 py-2 no-underline text-black hover:text-blue-700
-         bg-linear-to-b from-yellow-200 to-yellow-400
-         hover:from-yellow-300 hover:to-yellow-500;
-  background-image: var(--background-image-gradient-metal);
-  border: 2px solid #9ca3af;
-  box-shadow: var(--shadow-outer-thick);
-  font-weight: bold;
-  transition: all 0.1s;
+  @apply active:shadow-inner-thick border-2 border-gray-400 font-bold
+         hover:shadow-inner-thick hover:text-blue-700 hover:from-yellow-300 hover:to-yellow-500
+         no-underline px-4 py-2 shadow-outer-thick text-black transition-all duration-100
+         bg-linear-to-b from-yellow-200 to-yellow-400;
   text-shadow: 1px 1px 0 #fff;
 }
 
