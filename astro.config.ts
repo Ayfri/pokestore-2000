@@ -9,6 +9,7 @@ export default defineConfig({
 	/** The site is a handful of small static pages, so prefetching every link on hover makes navigation feel instant. */
 	prefetch: { prefetchAll: true },
 	/** The whole stylesheet is a few KB, inlining it saves a render-blocking request on every page. */
-	build: { inlineStylesheets: "always" },
+	/** "file" emits shop.html, which Cloudflare serves at /shop directly, where shop/index.html would cost a redirect to /shop/. */
+	build: { inlineStylesheets: "always", format: "file" },
 	vite: { plugins: [tailwindcss()] },
 });

@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
+/** With build.format "file" the build-time pathname is /shop.html or /index.html, while dev serves /shop and /. */
+const path = Astro.url.pathname.replace(/(index)?\.html$/, "");
 const description = "Welcome to Pokéstore 2000! The #1 destination for rare and collectible Pokémon cards.";
 const nav: [href: string, label: string, sprite: Sprite][] = [
 	["/", "Home", "pikachu"],
@@ -47,7 +49,7 @@ const nav: [href: string, label: string, sprite: Sprite][] = [
 			</div>
 			<nav class="flex flex-wrap justify-center gap-2 bg-blue-200 p-2">
 				{nav.map(([href, label, sprite]) => (
-					<a {href} class:list={["btn", Astro.url.pathname === href && "bg-yellow-300"]}><Gif name={sprite} class="h-4" />{label}</a>
+					<a {href} class:list={["btn", path === href && "bg-yellow-300"]}><Gif name={sprite} class="h-4" />{label}</a>
 				))}
 			</nav>
 			<marquee class="mt-4 bg-black p-1 font-bold text-yellow-300">
