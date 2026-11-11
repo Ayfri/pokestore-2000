@@ -11,7 +11,8 @@
 		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"sprites": "bun scripts/sprites.ts",
-		"gifcities": "bun scripts/gifcities.ts"
+		"gifcities": "bun scripts/gifcities.ts",
+		"montages": "bun scripts/montages.ts"
 	},
 	"dependencies": {
 		"@astrojs/svelte": "^9.1.5",
