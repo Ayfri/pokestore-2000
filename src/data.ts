@@ -43,7 +43,7 @@ const card = (set: keyof typeof sets, number: number, name: string, price: numbe
 	id: `${set}-${number}`, name, set: sets[set], number, price, rarity, stock, sprite, image: `https://images.pokemontcg.io/${set}/${number}_hires.png`,
 });
 
-/** Ids, names and rarities checked against the pokemontcg.io API. Prices follow late-2000 collector prices, Base Set holos on top. */
+/** Ids, names and rarities checked against the pokemontcg.io API. Prices are plausible estimates (no verified 2000 price list was found), Base Set holos on top. */
 export const cards: Card[] = [
 	card("base1", 4, "Charizard", 199.99, 1, "charizard"),
 	card("base1", 2, "Blastoise", 89.99, 3, "squirtle"),
