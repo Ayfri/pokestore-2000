@@ -1,11 +1,11 @@
-import { cards } from "./data";
+import { catalog } from "./data";
 
 /** Pages are separate documents, so the cart lives in localStorage to survive navigation; islands on one page share this instance. */
 class Cart {
 	quantities = $state<Record<string, number>>(import.meta.env.SSR ? {} : JSON.parse(localStorage.getItem("cart") ?? "{}"));
-	lines = $derived(cards.flatMap(card => {
-		const quantity = this.quantities[card.id];
-		return quantity ? [{ ...card, quantity }] : [];
+	lines = $derived(catalog.flatMap(item => {
+		const quantity = this.quantities[item.id];
+		return quantity ? [{ ...item, quantity }] : [];
 	}));
 	count = $derived(this.lines.reduce((sum, line) => sum + line.quantity, 0));
 	total = $derived(this.lines.reduce((sum, line) => sum + line.price * line.quantity, 0));
@@ -20,6 +20,15 @@ class Cart {
 		if (quantity > 0) this.quantities[id] = quantity;
 		else delete this.quantities[id];
 		this.save();
+	}
+
+	/** MissingNo.'s famous item duplication glitch: the first item in the cart jumps to x128. Returns the duplicated item's name. */
+	glitch(): string | undefined {
+		const line = this.lines[0];
+		if (!line) return undefined;
+		this.quantities[line.id] = 128;
+		this.save();
+		return line.name;
 	}
 
 	clear() {

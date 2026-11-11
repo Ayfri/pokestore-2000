@@ -1,0 +1,13 @@
+---
+import Downloads from "../components/Downloads.svelte";
+import Gif from "../components/Gif.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Free Downloads!!!">
+	<p class="mb-4 border-2 border-dashed border-red-600 bg-white p-2 text-center">
+		<Gif name="porygon" /> All downloads are <b>FREE</b> and virus-checked with Norton AntiVirus 2000! Please don't link directly to the files, it eats my bandwidth. <Gif name="porygon" />
+	</p>
+	<Downloads client:visible={{ rootMargin: "200px" }} />
+	<p class="mt-4 text-center text-xs text-gray-600">Download times are for a 56k modem. On 28.8k, double them. On a cable modem, lucky you!!!</p>
+</Layout>

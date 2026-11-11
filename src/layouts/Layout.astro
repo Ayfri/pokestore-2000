@@ -1,27 +1,48 @@
 ---
-import { Image } from "astro:assets";
+import { Font, Image } from "astro:assets";
 import logo from "../assets/pokestore.webp";
+import Badges from "../components/Badges.astro";
 import CartCount from "../components/CartCount.svelte";
 import Gif from "../components/Gif.astro";
-import type { Sprite } from "../data";
+import HitCounter from "../components/HitCounter.svelte";
+import MidiPlayer from "../components/MidiPlayer.svelte";
+import { type Sprite, y2k } from "../data";
 import "../styles.css";
 
 interface Props {
 	title: string;
 }
 
+type Link = [href: string, label: string, sprite: Sprite];
+
 const { title } = Astro.props;
 /** With build.format "file" the build-time pathname is /shop.html or /index.html, while dev serves /shop and /. */
 const path = Astro.url.pathname.replace(/(index)?\.html$/, "");
 const description = "Welcome to Pokéstore 2000! The #1 destination for rare and collectible Pokémon cards.";
-const nav: [href: string, label: string, sprite: Sprite][] = [
+const nav: Link[] = [
 	["/", "Home", "pikachu"],
-	["/shop", "Shop", "pokeball"],
+	["/shop", "Cards", "pokeball"],
+	["/goodies", "Boosters & Goodies", "ultraball"],
+	["/order-info", "How to Order", "greatball"],
 	["/guestbook", "Guestbook", "mew"],
 	["/about", "About", "jigglypuff"],
 	["/links", "Cool Links", "staryu"],
 	["/gifs", "GIF Gallery", "pichu"],
 ];
+const fun: Link[] = [
+	["/whos-that", "Who's That Pokémon?", "ditto"],
+	["/quiz", "Which Pokémon R U?", "eevee"],
+	["/rumors", "Secrets & Rumors", "gengar"],
+	["/downloads", "Downloads", "porygon"],
+	["/link-to-us", "Link to Us!", "abra"],
+];
+/** The webring is the site's own pages: prev/next walk the nav, "random" is picked once per page at build time, no script needed. */
+const ring = [...nav, ...fun].map(([href]) => href);
+const index = Math.max(ring.indexOf(path), 0);
+const others = ring.filter(href => href !== path);
+const random = others[Math.floor(Math.random() * others.length)];
+/** "Last updated" is the build date, moved to 2000 like every other date on the site. */
+const updated = y2k().toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" });
 ---
 
 <!doctype html>
@@ -35,59 +56,105 @@ const nav: [href: string, label: string, sprite: Sprite][] = [
 		<meta property="og:description" content={description} />
 		<meta name="theme-color" content="#000080" />
 		<link rel="icon" href="/gifs/pokeball.gif" />
+		<Font cssVariable="--font-comic-neue" />
+		<Font cssVariable="--font-vt323" />
 	</head>
 	<body>
-		<p class="mb-4 text-center text-xs text-white">
-			<Gif name="geodude" /> <span class="animate-blink">SITE UNDER CONSTRUCTION</span> <Gif name="geodude" />
-		</p>
+		<div class="mb-4 flex flex-wrap items-center justify-center gap-x-4 text-center text-xs text-white">
+			<span><Gif name="geodude" /> <span class="animate-blink">SITE UNDER CONSTRUCTION</span> <Gif name="geodude" /></span>
+			<span id="clock" class="font-led text-base text-yellow-300"></span>
+		</div>
 
-		<header class="box mb-8 border-4 border-double border-blue-700 bg-linear-to-r from-blue-100 to-purple-100">
+		<header class="box mb-8 bg-lilac">
 			<div class="mb-4 flex items-center justify-between gap-2">
 				<Gif name="pokeball" class="hidden h-12 sm:block" />
 				<a href="/" class="min-w-0"><Image src={logo} alt="Pokéstore 2000" height={80} densities={[1, 2]} format="avif" loading="eager" fetchpriority="high" /></a>
 				<a href="/cart" class="btn whitespace-nowrap"><Gif name="pikachu" />Cart (<CartCount client:only="svelte" />)</a>
 			</div>
-			<nav class="flex flex-wrap justify-center gap-2 bg-blue-200 p-2">
-				{nav.map(([href, label, sprite]) => (
-					<a {href} class:list={["btn", path === href && "bg-yellow-300"]}><Gif name={sprite} class="h-4" />{label}</a>
-				))}
+			<nav class="grid gap-1 bg-navy p-2">
+				<div class="flex flex-wrap justify-center gap-2">
+					{nav.map(([href, label, sprite]) => (
+						<a {href} class:list={["btn", path === href && "bg-yellow-300"]}><Gif name={sprite} class="h-4" />{label}</a>
+					))}
+				</div>
+				<div class="flex flex-wrap items-center justify-center gap-2 border-t-2 border-dashed border-sky pt-2">
+					<b class="rainbow text-sm">★ FUN ZONE ★</b>
+					{fun.map(([href, label, sprite]) => (
+						<a {href} class:list={["btn relative text-sm", path === href && "bg-yellow-300"]}>
+							<Gif name={sprite} class="h-4" />{label}
+							<span class="absolute -top-2 -right-2 animate-bounce bg-red-600 px-1 text-[9px] text-yellow-300">NEW!</span>
+						</a>
+					))}
+				</div>
 			</nav>
 			<marquee class="mt-4 bg-black p-1 font-bold text-yellow-300">
-				<Gif name="charizard" /> HOT DEAL! Buy any Charizard card and get a free Magikarp! Limited time offer! <Gif name="pichu" />
+				<Gif name="charizard" /> <span class="animate-flame text-white">HOT DEAL!</span> Buy any Charizard card and get a free Magikarp! Limited time offer!
+				<Gif name="pichu" /> Gold & Silver are OUT NOW in the USA!!! <Gif name="pichu" />
 			</marquee>
 		</header>
 
-		<main class="box bg-linear-to-r from-yellow-50 to-orange-50">
+		<main class="box bg-cream">
 			<h2 class="mb-6 flex items-center justify-center gap-4 text-2xl font-bold">
 				<Gif name="pokeball" class="h-8" /><span class="rainbow">{title}</span><Gif name="pokeball" class="h-8" />
 			</h2>
 			<slot />
 		</main>
 
-		<footer class="box mt-8 bg-linear-to-r from-green-100 to-blue-100 text-center text-xs">
+		<footer class="box mt-8 bg-mint text-center text-xs">
 			<marquee behavior="alternate" class="font-bold text-red-600">★★★ THANK YOU FOR VISITING POKÉSTORE 2000! ★★★</marquee>
+			<p class="my-4 flex flex-wrap items-center justify-center gap-2 font-bold">
+				<a href={ring[(index - 1 + ring.length) % ring.length]} class="btn text-xs">&lt;&lt; Prev</a>
+				<span class="border-2 border-purple-500 bg-purple-200 px-2 py-1"><Gif name="mew" class="inline h-4" /> PokéWebRing <Gif name="mew" class="inline h-4" /></span>
+				<a href={random} class="btn text-xs">Random</a>
+				<a href={ring[(index + 1) % ring.length]} class="btn text-xs">Next &gt;&gt;</a>
+			</p>
+			<MidiPlayer client:idle />
 			<div class="my-4 grid gap-2 sm:grid-cols-3 [&>div]:border [&>div]:border-blue-500 [&>div]:bg-blue-50 [&>div]:p-2 [&_b]:underline">
 				<div>
 					<b>SITE INFO</b>
-					<p class="mx-auto my-2 w-fit border-2 border-gray-500 bg-black px-2 font-mono text-green-400">HITS: 000012942</p>
-					<p>Last Updated: 08/27/2000</p>
+					<p class="my-2">
+						You are visitor #<br />
+						<HitCounter client:only="svelte"><HitCounter slot="fallback" /></HitCounter>
+					</p>
+					<p>Last Updated: {updated}</p>
 					<p>Download time: 56k - 8.2 sec</p>
 				</div>
 				<div>
 					<b>CONTACT US</b>
-					<p><a href="mailto:webmaster@pokestore-2000.com" class="text-blue-600 underline"><Gif name="porygon" />EMAIL</a></p>
-					<p><Gif name="pokeball" class="inline h-4" /> ICQ: 12345678</p>
+					<p><a href="mailto:webmaster@pokestore-2000.com" class="text-blue-600 underline"><Gif name="porygon" class="inline h-6 animate-spin-y" />EMAIL ME!!</a></p>
+					<p><Gif name="pokeball" class="inline h-4" /> ICQ: 48271936</p>
 					<p><Gif name="magikarp" class="inline h-4" /> AIM: PokeStore2000</p>
 				</div>
 				<div>
 					<b>COPYRIGHT</b>
 					<p class="my-2">© 2000 Pokéstore. Pokémon and all related characters are © Nintendo / Game Freak.</p>
 					<p class="font-bold text-red-600">NO FRAMES • NO JAVA • NO FLASH</p>
-					<p class="opacity-50">v1.8.5 BETA</p>
+					<p class="opacity-50">v1.9.2 BETA</p>
 				</div>
 			</div>
-			<p class="text-gray-600">This page optimized for 800x600 resolution</p>
-			<p class="animate-blink text-blue-700">[ DOWNLOAD THE POKÉSTORE TOOLBAR NOW! ]</p>
+			<Badges />
+			<p class="mt-4 text-gray-600">Your screen: <span id="screen">800x600</span></p>
+			<p class="my-2 text-sm font-bold">
+				<Gif name="pikachu" class="inline h-5" /> Site handcrafted with ♥ and Notepad by <a href="https://github.com/Ayfri">Ayfri</a>
+				- <a href="https://github.com/Ayfri/pokestore-2000">view the source</a> <Gif name="pikachu" class="inline h-5" />
+			</p>
+			<a href="/downloads" class="animate-blink text-blue-700">[ DOWNLOAD THE POKÉSTORE TOOLBAR NOW! ]</a>
 		</footer>
+
+		<dialog id="winner" class="win m-auto max-w-sm backdrop:bg-black/40">
+			<div class="titlebar"><span>Congratulations!!!.exe</span><form method="dialog"><button class="btn px-1 py-0 text-xs" aria-label="Close">x</button></form></div>
+			<div class="flex items-center gap-3 p-4 text-sm">
+				<Gif name="masterball" class="h-10 animate-bounce" />
+				<p><b class="animate-blink text-red-600">YOU ARE THE 1,000,000th VISITOR!!!</b><br />Click CLAIM NOW to receive your FREE Master Ball!</p>
+			</div>
+			<form method="dialog" class="flex justify-center gap-2 pb-3">
+				<button class="btn" value="claim">CLAIM NOW!</button>
+				<button class="btn">No thanks</button>
+			</form>
+		</dialog>
+
+		<script>
+			import "../retro";
+		</script>
 	</body>
 </html>

@@ -1,0 +1,12 @@
+---
+import WhosThat from "../components/WhosThat.svelte";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Who's That Pokémon?">
+	<p class="mb-4 text-center">Just like on TV during the commercial break!!! Guess the Pokémon from its shadow. How long can YOUR streak go?</p>
+	<WhosThat client:only="svelte">
+		<p slot="fallback" class="text-center font-bold">Loading game... (this may take a while on 28.8k)</p>
+	</WhosThat>
+	<p class="mt-4 text-center text-xs text-gray-600">Tip: you need JavaScript turned ON in Netscape for this game to work.</p>
+</Layout>

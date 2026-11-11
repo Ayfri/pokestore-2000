@@ -1,0 +1,61 @@
+---
+import Gif from "../components/Gif.astro";
+import Layout from "../layouts/Layout.astro";
+
+const steps = [
+	"Add the cards you want to your <b>Shopping Cart</b>.",
+	"Go to the cart and <b>print the page</b> (File &gt; Print in your browser).",
+	"Write your name, address and email on the printout.",
+	"Mail it with a <b>check or money order</b> payable to <i>Pokéstore 2000</i>. NO CASH please!!",
+	"I ship every Saturday when my mom drives me to the post office. You get an email when it's sent!",
+];
+/** 2000 USPS rates: the first-class stamp was 33 cents and a 2 lb Priority Mail envelope $3.20. */
+const shipping = [
+	["1-10 cards", "Toploader in an envelope, First Class Mail", "$1.00"],
+	["11-50 cards", "Bubble mailer, Priority Mail (2-3 days)", "$3.20"],
+	["Boxes / binders", "Priority Mail, box", "$5.50"],
+	["Insurance (recommended over $50)", "USPS insurance", "+$0.85"],
+	["Canada", "Airmail", "$2.00"],
+];
+const grades = [
+	["Mint", "Perfect! Straight from the pack into a sleeve. No scratches, perfect corners."],
+	["Near Mint", "Looks perfect, maybe one tiny white dot on the back. Most of my cards."],
+	["Excellent", "Some white on the edges, light scratches on the holo. Was in a binder."],
+	["Played", "Someone actually played with this one at school. Still good for decks!"],
+];
+const faq = [
+	["Do you take credit cards?", "Not yet, it's not safe to type your card number on the Internet! But I now accept <b>PayPal</b> (it's new, it's like sending money by email)."],
+	["Are your cards real?", "100% official Wizards of the Coast cards, opened by me. I never sell fakes. Fakes have the wrong font and no shiny back!!"],
+	["Do you trade?", "YES! Email me your list. I'm looking for Neo Genesis Lugia and a 1st Edition Base Set Charizard (I can dream)."],
+	["Can I return a card?", "If it arrives damaged, send it back within 2 weeks and I'll refund you or send another one."],
+];
+---
+
+<Layout title="How to Order">
+	<section class="box mb-6 bg-white">
+		<h3 class="mb-3 text-xl font-bold text-navy"><Gif name="pokeball" /> Ordering is EASY!</h3>
+		<ol class="ml-6 list-decimal space-y-1">{steps.map(step => <li set:html={step} />)}</ol>
+		<p class="mt-3 border-2 border-dashed border-red-600 bg-cream p-2 text-sm">
+			Mail to: <b>Pokéstore 2000, P.O. Box 151, Pallet Town, KANTO 00025</b><br />
+			Orders usually arrive in 4-7 days. Questions? <a href="mailto:webmaster@pokestore-2000.com">webmaster@pokestore-2000.com</a> (I answer after school)
+		</p>
+	</section>
+
+	<h3 class="mb-2 text-xl font-bold">Shipping Rates (USA)</h3>
+	<table class="mb-6 w-full border-2 border-navy bg-white text-sm [&_td]:border [&_td]:border-silver [&_td]:p-2">
+		<thead class="bg-navy text-white"><tr><th>Order</th><th>How</th><th>Price</th></tr></thead>
+		<tbody>{shipping.map(([order, how, cost]) => <tr><td>{order}</td><td>{how}</td><td class="text-center font-bold">{cost}</td></tr>)}</tbody>
+	</table>
+
+	<div class="grid gap-6 md:grid-cols-2">
+		<section class="box bg-mint">
+			<h3 class="mb-2 text-lg font-bold">Card Condition Guide</h3>
+			<dl class="text-sm">{grades.map(([grade, text]) => <><dt class="font-bold text-navy">{grade}</dt><dd class="mb-2 ml-4">{text}</dd></>)}</dl>
+		</section>
+		<section class="box bg-lilac">
+			<h3 class="mb-2 text-lg font-bold">F.A.Q.</h3>
+			{faq.map(([question, answer]) => <p class="mb-2 text-sm"><b>Q: {question}</b><br />A: <span set:html={answer} /></p>)}
+		</section>
+	</div>
+	<p class="mt-6 text-center text-xs text-gray-600"><Gif name="squirtle" class="inline h-5" /> Safe shopping guaranteed! Pokéstore 2000 never asks for your password or credit card number by email.</p>
+</Layout>

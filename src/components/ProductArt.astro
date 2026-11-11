@@ -1,0 +1,36 @@
+---
+/** Packaging drawn in CSS around a sprite and the official set logo, since product photos of the time are not available to fetch. */
+import { Image } from "astro:assets";
+import type { Product } from "../data";
+import Gif from "./Gif.astro";
+
+interface Props {
+	product: Product;
+}
+
+const { product } = Astro.props;
+const booster = product.kind === "Booster Packs" && !product.id.startsWith("box");
+/** Crimped foil edges: a zigzag along the top and bottom of the pack. */
+const teeth = 10;
+const zigzag = (from: number, to: number, reverse: boolean) =>
+	Array.from({ length: teeth * 2 + 1 }, (_, i) => `${((reverse ? teeth * 2 - i : i) / (teeth * 2)) * 100}% ${i % 2 ? to : from}%`);
+const crimp = `polygon(${[...zigzag(0, 3, false), ...zigzag(100, 97, true)].join(", ")})`;
+const platform = product.id === "game-stadium" || product.id === "game-snap" ? "NINTENDO⁶⁴" : product.id === "game-yellow" ? "GAME BOY" : "GAME BOY COLOR";
+---
+
+<div
+	class:list={[
+		"relative mx-auto flex flex-col items-center justify-between overflow-hidden border-2 border-black/40 p-2 text-white",
+		product.color,
+		booster ? "h-48 w-32" : product.kind === "Supplies" || product.kind === "Goodies" ? "h-36 w-36 rounded-lg" : "h-44 w-36",
+	]}
+	style={booster ? { clipPath: crimp } : undefined}
+>
+	{booster && <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_30%,#fff8_45%,transparent_60%)]" />}
+	{product.kind === "Video Games" && <div class="-mx-2 -mt-2 w-[calc(100%+1rem)] bg-black py-0.5 text-center font-ui text-[9px] font-bold tracking-widest">{platform}</div>}
+	{product.logo && <Image src={`https://images.pokemontcg.io/${product.logo}/logo.png`} alt="" width={110} height={40} fit="contain" background="transparent" densities={[1, 2]} format="avif" class="mt-1 max-h-10 object-contain drop-shadow-[1px_1px_0_#000]" />}
+	<Gif name={product.sprite} class="max-h-20 drop-shadow-[2px_2px_0_#0008]" />
+	<span class="text-center font-wordart text-xs leading-tight tracking-wide [text-shadow:1px_1px_0_#000]">
+		{booster ? "11 CARDS" : product.id.startsWith("box") ? "36 BOOSTER PACKS" : product.kind === "Theme Decks" ? `${product.name.replace(" Theme Deck", "").toUpperCase()}` : product.name.toUpperCase()}
+	</span>
+</div>

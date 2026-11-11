@@ -1,36 +1,122 @@
 @import "tailwindcss";
 
+/* Comic Neue and VT323 come from Astro's Fonts API; Comic Neue is only a stand-in for systems without Comic Sans, so most Windows visitors never download it. */
+@theme inline {
+	--font-sans: "Comic Sans MS", "Comic Sans", var(--font-comic-neue);
+	--font-led: var(--font-vt323);
+}
+
 @theme {
-	--font-sans: "MS Sans Serif", "Microsoft Sans Serif", "Comic Sans MS", sans-serif;
-	--shadow-retro: 3px 3px 6px #0006;
+	--font-ui: Tahoma, "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
+	--font-wordart: Impact, "Arial Black", Haettenschweiler, sans-serif;
+	--font-mono: "Courier New", Courier, monospace;
+
+	/* The 216-color web-safe palette, plus the default Netscape link colors. */
+	--color-navy: #000080;
+	--color-silver: #c0c0c0;
+	--color-teal: #008080;
+	--color-cream: #ffffcc;
+	--color-lilac: #ccccff;
+	--color-mint: #ccffcc;
+	--color-peach: #ffcc99;
+	--color-sky: #99ccff;
+	--color-link: #0000ee;
+	--color-visited: #551a8b;
+
 	--animate-blink: blink 1s step-end infinite;
 	--animate-rainbow: rainbow 5s linear infinite;
+	--animate-spin-y: spin-y 2s linear infinite;
+	--animate-flame: flame 0.6s ease-in-out infinite alternate;
+	--animate-fall: fall linear infinite;
 
 	@keyframes blink {
 		50% { opacity: 0; }
+	}
+	@keyframes spin-y {
+		to { transform: rotateY(360deg); }
+	}
+	@keyframes flame {
+		from { text-shadow: 0 0 4px #ff0, 0 -2px 6px #f80, 0 -5px 10px #f00; }
+		to { text-shadow: 0 0 6px #ff0, 0 -4px 10px #f80, 0 -9px 14px #f00; }
+	}
+	@keyframes fall {
+		from { transform: translate(0, -10vh) rotate(0); }
+		50% { transform: translate(40px, 50vh) rotate(180deg); }
+		to { transform: translate(0, 110vh) rotate(360deg); }
 	}
 	@keyframes rainbow {
 		to { filter: hue-rotate(360deg); }
 	}
 }
 
-body {
-	@apply bg-[#000080] bg-[url(/gifs/stars.gif)] p-4 font-sans;
+@layer base {
+	body {
+		@apply bg-navy bg-[url(/gifs/stars.gif)] p-4 font-sans;
+	}
+
+	a {
+		@apply text-link underline visited:text-visited;
+	}
+
+	/* A real GeoCities rainbow line GIF, stretched like everyone did with <img width="100%">. */
+	hr {
+		@apply my-4 h-[5px] border-0 bg-[url(/gifs/rainbow.gif)] bg-size-[100%_100%] [image-rendering:pixelated];
+	}
+
+	button, input, textarea, select {
+		@apply font-ui;
+	}
 }
 
-hr {
-	@apply my-4 h-1 border-0 bg-linear-to-r from-red-500 via-yellow-400 to-blue-500;
+/* Every animation on the site is decoration, so reduced motion simply freezes them all. */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation: none !important;
+	}
 }
 
 /* Win98 bevel: light top-left edge, dark bottom-right, flipped while pressed. */
 @utility btn {
-	@apply inline-flex cursor-pointer items-center gap-1 border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 bg-gray-300 px-3 py-1 font-bold text-black no-underline active:border-t-gray-600 active:border-l-gray-600 active:border-r-white active:border-b-white;
+	@apply inline-flex cursor-pointer items-center gap-1 border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 bg-silver px-3 py-1 font-ui text-sm font-bold text-black no-underline visited:text-black active:border-t-gray-600 active:border-l-gray-600 active:border-r-white active:border-b-white;
 }
 
+@utility win {
+	@apply border-2 border-t-white border-l-white border-r-gray-700 border-b-gray-700 bg-silver p-0.5 font-ui text-black;
+}
+
+@utility titlebar {
+	@apply flex items-center justify-between gap-2 bg-linear-to-r from-navy to-[#1084d0] px-1 py-0.5 text-sm font-bold text-white;
+}
+
+/* What <table border="4"> looked like: a ridged silver frame around a flat colored cell. */
 @utility box {
-	@apply border-2 border-gray-400 bg-white p-4 shadow-retro;
+	@apply border-4 border-silver bg-white p-4 [border-style:ridge];
 }
 
+/* The classic 88x31 link button size every site had a wall of. */
+@utility badge {
+	@apply inline-flex h-[31px] w-[88px] flex-col items-center justify-center overflow-hidden border text-center font-ui text-[9px] leading-tight font-bold no-underline;
+}
+
+/* WordArt: chunky Impact with a hard navy extrusion; drop-shadow follows the clipped gradient where text-shadow would show through it. */
 @utility rainbow {
-	@apply animate-rainbow bg-linear-to-r from-red-500 via-green-500 to-violet-500 bg-clip-text text-transparent;
+	@apply animate-rainbow bg-linear-to-r from-red-500 via-green-500 to-violet-500 bg-clip-text font-wordart tracking-wide text-transparent drop-shadow-[2px_2px_0_#000080];
+}
+
+.sparkle {
+	@apply pointer-events-none fixed top-0 left-0 z-50 text-sm;
+}
+
+/* Konami code MissingNo. mode: the jitter steps twice a second, below the 3 flashes per second seizure guideline. */
+.missingno body {
+	filter: hue-rotate(160deg) saturate(3) contrast(1.3);
+}
+
+.missingno img {
+	image-rendering: pixelated;
+	animation: glitch 0.5s steps(1) infinite;
+}
+
+@keyframes glitch {
+	50% { transform: skewX(-12deg) scaleY(1.4) translateX(4px); }
 }

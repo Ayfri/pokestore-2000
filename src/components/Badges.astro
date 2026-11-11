@@ -1,0 +1,22 @@
+---
+/** The wall of 88x31 buttons every homepage had, drawn in CSS so the whole set costs zero requests. */
+const badges: [top: string, bottom: string, style: string][] = [
+	["Netscape", "NOW!", "border-gray-500 bg-black text-teal-300"],
+	["Best viewed with", "Internet Explorer 5", "border-blue-900 bg-blue-700 text-white"],
+	["Made with", "NOTEPAD.EXE", "border-gray-500 bg-white text-black"],
+	["Powered by", "PIKACHU ⚡", "border-yellow-700 bg-yellow-300 text-black"],
+	["Y2K", "COMPLIANT ✔", "border-green-900 bg-green-600 text-white"],
+	["Get", "WINAMP 2.7", "border-gray-600 bg-gray-800 text-orange-400"],
+	["AOL Keyword:", "POKESTORE", "border-blue-800 bg-sky-300 text-blue-900"],
+	["NO", "TEAM ROCKET", "border-red-900 bg-red-600 text-white"],
+	["HTML 4.01", "VALID (probably)", "border-gray-500 bg-gray-200 text-gray-800"],
+	["I ♥", "MISTY", "border-pink-700 bg-pink-300 text-pink-900"],
+	["Site by", "AYFRI ★", "border-purple-900 bg-purple-700 text-yellow-300"],
+];
+---
+
+<div class="flex flex-wrap justify-center gap-1">
+	{badges.map(([top, bottom, style]) => (
+		<span class:list={["badge", style]}><span class="font-normal">{top}</span>{bottom}</span>
+	))}
+</div>

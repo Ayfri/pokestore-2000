@@ -1,0 +1,25 @@
+---
+import Adopt from "../components/Adopt.svelte";
+import Gif from "../components/Gif.astro";
+import Layout from "../layouts/Layout.astro";
+
+const code = `<a href="http://www.pokestore-2000.com"><img src="http://www.pokestore-2000.com/gifs/pokeball.gif" border="0"> Pokéstore 2000 - Rare Pokémon Cards!</a>`;
+---
+
+<Layout title="Link to Us!">
+	<p class="mb-6 text-center">Like my site? Put a link on YOUR homepage!!! Link to me and I'll link back, just <a href="mailto:webmaster@pokestore-2000.com?subject=LINK EXCHANGE">email me</a> your URL.</p>
+	<div class="grid gap-6 md:grid-cols-2">
+		<section class="box bg-white text-center">
+			<h3 class="mb-3 text-xl font-bold">Our Button</h3>
+			<span class="badge mx-auto border-yellow-500 bg-red-600 text-yellow-300"><span class="flex items-center gap-1"><Gif name="pokeball" class="h-3" />POKÉSTORE</span>2000</span>
+			<p class="my-3 text-sm">Copy &amp; paste this HTML code:</p>
+			<textarea readonly class="h-24 w-full border-2 border-gray-500 bg-white p-1 font-mono text-xs [border-style:inset]">{code}</textarea>
+			<p class="mt-2 text-xs text-gray-600">Please don't hotlink the GIF, save it to your own server! (right-click is disabled tho... email me for it)</p>
+		</section>
+		<Adopt client:visible={{ rootMargin: "200px" }} />
+	</div>
+	<hr />
+	<p class="text-center text-sm">
+		<Gif name="abra" class="inline h-8" /> Sites linking to us: <b>47</b> and counting! Proud member of the <b>PokéWebRing</b> and <b>Kanto Trainers Ring</b>.
+	</p>
+</Layout>

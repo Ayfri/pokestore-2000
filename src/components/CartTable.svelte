@@ -3,8 +3,8 @@
 	import { price, spriteUrl } from "../data";
 
 	function checkout() {
-		alert("Thank you for your purchase! Your order has been processed.");
-		cart.clear();
+		alert("Thank you for your order!!!\n\nNow PRINT this page (File > Print) and mail it with a check or money order. See the How to Order page for the address.");
+		print();
 	}
 </script>
 

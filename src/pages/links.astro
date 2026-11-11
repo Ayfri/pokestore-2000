@@ -12,7 +12,7 @@ const links: [title: string, description: string, sprite: Sprite][] = [
 const clubs: [name: string, description: string, sprite: Sprite, members: number][] = [
 	["Psyduck Fanclub", "For fans of the confused duck Pokémon!", "psyduck", 342],
 	["Jigglypuff Singers", "Share your favorite Jigglypuff songs", "jigglypuff", 189],
-	["Pikachu World", "The #1 site for Pikachu lovers!", "pikachu", 1024],
+	["Pikachu World", "The #1 site for Pikachu lovers!", "pikachu", 1087],
 	["Psychic Alliance", "Mew and Mewtwo fans unite", "mewtwo", 567],
 	["Fire Types United", "Hot site for fire Pokémon trainers", "charizard", 455],
 	["Grass Kingdom", "Growing community of grass Pokémon lovers", "bulbasaur", 386],
@@ -35,7 +35,7 @@ const clubs: [name: string, description: string, sprite: Sprite, members: number
 	<hr />
 	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 		{clubs.map(([name, description, sprite, members]) => (
-			<div class="box bg-linear-to-b from-blue-50 to-purple-50 text-center text-xs">
+			<div class="box bg-white text-center text-xs">
 				<Gif name={sprite} class="mx-auto h-12" />
 				<b class="text-sm">{name}</b>
 				<p class="my-1">{description}</p>
