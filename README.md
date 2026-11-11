@@ -1,26 +1,19 @@
 # ★★★ POKÉSTORE 2000 ★★★
 
 <p align="center">
-  <img src="public/pokestore.webp" alt="Pokéstore Logo" width="400">
+  <img src="src/assets/pokestore.webp" alt="Pokéstore Logo" width="400">
 </p>
 
 ## WELCOME TRAINERS!!! ^_^
 
 THIS IS THE **OFFICIAL** REPOSITORY FOR POKÉSTORE 2000 - THE #1 POKÉMON CARD SHOP ON THE INTERNET!!!
 
-### ~~~~~ HOW TO USE: ~~~~~
-
-1) DOWNLOAD the files to your COMPUTER
-2) Make sure you have NETSCAPE NAVIGATOR or INTERNET EXPLORER installed!
-3) Put files on your WEBSERVER
-4) ENJOY!!! :-)
-
 ### ~~~~~ FEATURES: ~~~~~
 
 - [X] AWESOME animated GIFs!!!
 - [X] Shop for RARE Pokémon cards!!!
 - [X] Sign our GUESTBOOK!!!
-- [X] Working SHOPPING CART system!!!
+- [X] Working SHOPPING CART system (it even REMEMBERS your cards)!!!
 - [X] View our AWARDS!!!
 - [X] NO FRAMES or JAVA REQUIRED!!!
 
@@ -28,41 +21,40 @@ THIS IS THE **OFFICIAL** REPOSITORY FOR POKÉSTORE 2000 - THE #1 POKÉMON CARD S
 
 - 486 DX2/66 or PENTIUM processor
 - 16 MB RAM (32 MB RECOMMENDED)
-- Mouse
-- Sound Card (for MUSIC)
 - 800x600 screen resolution (1024x768 RECOMMENDED)
-- Node.js v22+
-- Vue 3
-- Vite
+- Bun 1.3+
 
 ### ~~~~~ INSTALLATION: ~~~~~
 
 ```
-npm install
+bun install
 ```
 
 ### ~~~~~ RUN THE SERVER: ~~~~~
 
 ```
-npm run dev
+bun dev
 ```
 
 ### ~~~~~ MAKE A PRODUCTION BUILD: ~~~~~
 
 ```
-npm run build
+bun run build
 ```
+
+The site is static Astro pages with tiny Svelte islands (cart + guestbook). Card scans are downloaded at build time and re-encoded to AVIF.
+`wrangler.toml` serves `dist/` as Cloudflare Workers static assets, with cache rules in `public/_headers`.
 
 ### ~~~~~ CONTACT THE WEBMASTER: ~~~~~
 
-EMAIL: webmaster@pokéstore-2000.com
+EMAIL: webmaster@pokestore-2000.com
 ICQ: 12345678
 AIM: PokeStore2000
 
 ### ~~~~~ LEGAL DISCLAIMER: ~~~~~
 POKÉMON and all related CHARACTERS are property of NINTENDO. This is a FAN SITE and is not affiliated with Nintendo in any way.
 
-![VALID HTML!](public/gifs/pokemon/greatball.gif) ![UNDER CONSTRUCTION](public/gifs/pokemon/construction.gif) ![VALID CSS!](public/gifs/pokemon/ultraball.gif)
+![PIKACHU!](public/gifs/pikachu.gif) ![UNDER CONSTRUCTION](public/gifs/geodude.gif) ![MEW!](public/gifs/mew.gif)
 
 -------------------------------
 © 2000 POKÉSTORE. ALL RIGHTS RESERVED.
