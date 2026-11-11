@@ -31,3 +31,6 @@ coverage
 .env
 .env.*
 !.env.example
+
+# Output of bun gifcities
+scripts/gifcities.json
