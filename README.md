@@ -48,8 +48,8 @@ bun run build
 ```
 
 The site is static Astro pages with Svelte islands for the stateful widgets (cart, guestbook, poll, games, MIDI player, hit counter), and one
-bundled script for the site-wide gimmicks (cursor sparkles, falling Poké Balls, clock, popup, Konami code). Card scans and set logos are
-downloaded at build time and re-encoded to AVIF, and fonts are self-hosted through Astro's Fonts API.
+bundled script for the site-wide gimmicks (cursor sparkles, falling Poké Balls, clock, popup, Konami code). Card scans are downloaded at
+build time and product photos (`src/assets/products`, from Bulbapedia) are local, both re-encoded to AVIF, and fonts are self-hosted through Astro's Fonts API.
 `wrangler.toml` serves `dist/` as Cloudflare Workers static assets, with cache rules in `public/_headers`.
 
 ### ~~~~~ GIF SCRIPTS: ~~~~~

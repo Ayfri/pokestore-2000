@@ -91,45 +91,41 @@ export interface Product {
 	stock: number;
 	sprite: Sprite;
 	description: string;
-	/** Packaging color of the CSS-drawn box, since there are no product photos to show. */
-	color: string;
-	/** pokemontcg.io set id whose logo goes on the packaging. */
-	logo?: string;
 }
 
-const product = (id: string, kind: Product["kind"], name: string, price: number, stock: number, sprite: Sprite, color: string, description: string, logo?: string): Product => ({
-	id, kind, name, price, stock, sprite, color, description, ...(logo && { logo }),
+const product = (id: string, kind: Product["kind"], name: string, price: number, stock: number, sprite: Sprite, description: string): Product => ({
+	id, kind, name, price, stock, sprite, description,
 });
 
 /** Real products sold in the US in 1999-2000. */
 export const products: Product[] = [
-	product("pack-base1", "Booster Packs", "Base Set Booster", 3.99, 48, "charizard", "bg-sky-700", "11 cards, 1 rare in every pack! Unlimited edition. I weighed NONE of them, promise.", "base1"),
-	product("pack-base2", "Booster Packs", "Jungle Booster", 3.99, 36, "snorlax", "bg-green-700", "11 cards. Pull a holo Scyther or Snorlax!", "base2"),
-	product("pack-base3", "Booster Packs", "Fossil Booster", 3.99, 29, "dragonite", "bg-amber-800", "11 cards. Holo Dragonite, Gengar and the legendary birds!", "base3"),
-	product("pack-base5", "Booster Packs", "Team Rocket Booster", 3.99, 41, "meowth", "bg-gray-900", "11 cards. Dark Pokémon are EVIL. Dark Charizard is in here somewhere!!", "base5"),
-	product("pack-gym1", "Booster Packs", "Gym Heroes Booster", 3.99, 33, "onix", "bg-red-800", "11 cards. Brock, Misty, Lt. Surge, Erika and their own Pokémon!", "gym1"),
-	product("box-base5", "Booster Packs", "Team Rocket Booster Box", 109.99, 2, "meowth", "bg-gray-900", "36 sealed packs. The best deal per pack on the whole Internet!!", "base5"),
-	product("deck-overgrowth", "Theme Decks", "Overgrowth Theme Deck", 9.99, 6, "bulbasaur", "bg-green-600", "60-card Grass/Water deck, ready to play. Includes a holo Blastoise!", "base1"),
-	product("deck-zap", "Theme Decks", "Zap! Theme Deck", 9.99, 4, "pikachu", "bg-yellow-500", "60-card Psychic/Lightning deck with a holo Mewtwo!", "base1"),
-	product("deck-brushfire", "Theme Decks", "Brushfire Theme Deck", 9.99, 5, "charmander", "bg-orange-600", "60-card Fire/Grass deck with a holo Ninetales!", "base1"),
-	product("deck-blackout", "Theme Decks", "Blackout Theme Deck", 9.99, 3, "geodude", "bg-stone-600", "60-card Fighting/Water deck with a holo Hitmonchan!", "base1"),
-	product("deck-2player", "Theme Decks", "2-Player Starter Set", 14.99, 7, "pichu", "bg-blue-700", "Two 30-card decks, a play mat, damage counters and the rulebook. Learn to play!", "base1"),
-	product("game-yellow", "Video Games", "Pokémon Yellow", 29.99, 5, "pikachu", "bg-yellow-400", "Game Boy. Pikachu follows you around!!! Special Pikachu Edition."),
-	product("game-gold", "Video Games", "Pokémon Gold", 34.99, 3, "pichu", "bg-yellow-600", "Game Boy Color. 100 NEW Pokémon, day and night, and you can go back to Kanto!!"),
-	product("game-silver", "Video Games", "Pokémon Silver", 34.99, 4, "pichu", "bg-gray-400", "Game Boy Color. Same as Gold but with Lugia on the box. Trade with your friends!"),
-	product("game-tcg", "Video Games", "Pokémon Trading Card Game", 29.99, 6, "porygon", "bg-sky-500", "Game Boy Color. The card game on your Game Boy! Comes with a promo card."),
-	product("game-pinball", "Video Games", "Pokémon Pinball", 24.99, 2, "magikarp", "bg-cyan-600", "Game Boy Color. The cartridge RUMBLES. Needs 1 AAA battery."),
-	product("game-stadium", "Video Games", "Pokémon Stadium", 59.99, 2, "mewtwo", "bg-red-700", "Nintendo 64. See your Pokémon in 3D! Includes the Transfer Pak."),
-	product("game-snap", "Video Games", "Pokémon Snap", 49.99, 3, "psyduck", "bg-lime-600", "Nintendo 64. Take pictures of Pokémon. You can print them at Blockbuster!!"),
-	product("sleeves", "Supplies", "Card Sleeves (100)", 4.99, 30, "pokeball", "bg-sky-300", "Keep your holos MINT. Clear sleeves, fits every Pokémon card."),
-	product("toploaders", "Supplies", "Top Loaders (25)", 3.49, 22, "greatball", "bg-gray-300", "Hard plastic for your best cards. Recommended for Charizard owners!!"),
-	product("pages", "Supplies", "9-Pocket Binder Pages (20)", 3.99, 25, "ultraball", "bg-yellow-200", "Holds 180 cards. Every trade binder needs these."),
-	product("binder", "Supplies", "Poké Ball Binder", 12.99, 8, "masterball", "bg-red-600", "3-ring binder with a giant Poké Ball on the cover. Pages not included."),
-	product("plush", "Goodies", "Pikachu Plush (8 in.)", 14.99, 6, "pikachu", "bg-yellow-300", "Super soft! Says nothing, but it's cute."),
-	product("pokedex", "Goodies", "Electronic Pokédex", 24.99, 3, "porygon", "bg-red-700", "Handheld Pokédex with all 151 Pokémon inside. Batteries included!"),
-	product("pocket-pikachu", "Goodies", "Pocket Pikachu", 19.99, 4, "pikachu", "bg-yellow-400", "Virtual pet + step counter. Walk more and Pikachu likes you more!"),
-	product("bk-card", "Goodies", "23K Gold-Plated Card", 19.99, 2, "mewtwo", "bg-yellow-600", "The gold-plated cards from the Burger King promo, still in the Poké Ball box!"),
-	product("cd", "Goodies", "2.B.A. Master CD", 13.99, 5, "jigglypuff", "bg-purple-600", "The soundtrack! Has the Pokérap, the theme song and \"Viridian City\"."),
+	product("pack-base1", "Booster Packs", "Base Set Booster", 3.99, 48, "charizard", "11 cards, 1 rare in every pack! Unlimited edition. I weighed NONE of them, promise."),
+	product("pack-base2", "Booster Packs", "Jungle Booster", 3.99, 36, "snorlax", "11 cards. Pull a holo Scyther or Snorlax!"),
+	product("pack-base3", "Booster Packs", "Fossil Booster", 3.99, 29, "dragonite", "11 cards. Holo Dragonite, Gengar and the legendary birds!"),
+	product("pack-base5", "Booster Packs", "Team Rocket Booster", 3.99, 41, "meowth", "11 cards. Dark Pokémon are EVIL. Dark Charizard is in here somewhere!!"),
+	product("pack-gym1", "Booster Packs", "Gym Heroes Booster", 3.99, 33, "onix", "11 cards. Brock, Misty, Lt. Surge, Erika and their own Pokémon!"),
+	product("box-base5", "Booster Packs", "Team Rocket Booster Box", 109.99, 2, "meowth", "36 sealed packs. The best deal per pack on the whole Internet!!"),
+	product("deck-overgrowth", "Theme Decks", "Overgrowth Theme Deck", 9.99, 6, "bulbasaur", "60-card Grass/Water deck, ready to play. Includes a holo Blastoise!"),
+	product("deck-zap", "Theme Decks", "Zap! Theme Deck", 9.99, 4, "pikachu", "60-card Psychic/Lightning deck with a holo Mewtwo!"),
+	product("deck-brushfire", "Theme Decks", "Brushfire Theme Deck", 9.99, 5, "charmander", "60-card Fire/Grass deck with a holo Ninetales!"),
+	product("deck-blackout", "Theme Decks", "Blackout Theme Deck", 9.99, 3, "geodude", "60-card Fighting/Water deck with a holo Hitmonchan!"),
+	product("deck-2player", "Theme Decks", "2-Player Starter Set", 14.99, 7, "pichu", "Two 30-card decks, a play mat, damage counters and the rulebook. Learn to play!"),
+	product("game-yellow", "Video Games", "Pokémon Yellow", 29.99, 5, "pikachu", "Game Boy. Pikachu follows you around!!! Special Pikachu Edition."),
+	product("game-gold", "Video Games", "Pokémon Gold", 34.99, 3, "pichu", "Game Boy Color. 100 NEW Pokémon, day and night, and you can go back to Kanto!!"),
+	product("game-silver", "Video Games", "Pokémon Silver", 34.99, 4, "pichu", "Game Boy Color. Same as Gold but with Lugia on the box. Trade with your friends!"),
+	product("game-tcg", "Video Games", "Pokémon Trading Card Game", 29.99, 6, "porygon", "Game Boy Color. The card game on your Game Boy! Comes with a promo card."),
+	product("game-pinball", "Video Games", "Pokémon Pinball", 24.99, 2, "magikarp", "Game Boy Color. The cartridge RUMBLES. Needs 1 AAA battery."),
+	product("game-stadium", "Video Games", "Pokémon Stadium", 59.99, 2, "mewtwo", "Nintendo 64. See your Pokémon in 3D! Includes the Transfer Pak."),
+	product("game-snap", "Video Games", "Pokémon Snap", 49.99, 3, "psyduck", "Nintendo 64. Take pictures of Pokémon. You can print them at Blockbuster!!"),
+	product("sleeves", "Supplies", "Card Sleeves (100)", 4.99, 30, "pokeball", "Keep your holos MINT. Clear sleeves, fits every Pokémon card."),
+	product("toploaders", "Supplies", "Top Loaders (25)", 3.49, 22, "greatball", "Hard plastic for your best cards. Recommended for Charizard owners!!"),
+	product("pages", "Supplies", "9-Pocket Binder Pages (20)", 3.99, 25, "ultraball", "Holds 180 cards. Every trade binder needs these."),
+	product("binder", "Supplies", "3-Ring Collector's Album", 12.99, 8, "masterball", "The official binder with Snorlax, Meowth and Sandshrew on the cover. Pages not included."),
+	product("plush", "Goodies", "Pikachu Plush (8 in.)", 14.99, 6, "pikachu", "Super soft! Says nothing, but it's cute."),
+	product("pokedex", "Goodies", "Electronic Pokédex", 24.99, 3, "porygon", "Handheld Pokédex with all 151 Pokémon inside. Batteries included!"),
+	product("pocket-pikachu", "Goodies", "Pocket Pikachu", 19.99, 4, "pikachu", "Virtual pet + step counter. Walk more and Pikachu likes you more!"),
+	product("bk-card", "Goodies", "23K Gold-Plated Card", 19.99, 2, "mewtwo", "The gold-plated cards from the Burger King promo, still in the Poké Ball box!"),
+	product("cd", "Goodies", "2.B.A. Master CD", 13.99, 5, "jigglypuff", "The soundtrack! Has the Pokérap, the theme song and \"Viridian City\"."),
 ];
 
 /** Everything the cart can hold: cards and products share id, name, price and sprite. */
