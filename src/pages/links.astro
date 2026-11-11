@@ -1,49 +1,60 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import ezboard from "../assets/links/ezboard.webp";
+import gamefaqs from "../assets/links/gamefaqs.webp";
+import gym from "../assets/links/gym.webp";
+import pojo from "../assets/links/pojo.webp";
+import psypoke from "../assets/links/psypoke.webp";
+import village from "../assets/links/village.webp";
+import world from "../assets/links/world.webp";
 import Gif from "../components/Gif.astro";
-import type { Sprite } from "../data";
 import Layout from "../layouts/Layout.astro";
 
-const links: [title: string, description: string, sprite: Sprite][] = [
-	["PokéWebRing", "Join our webring of Pokémon websites!", "charmander"],
-	["Gary's Gym", "Check out Gary's awesome Pokémon gym!", "squirtle"],
-	["Pokémon Card Database", "The biggest database of Pokémon cards online!", "pikachu"],
-	["Red's Pokémon Journey", "Follow Red's journey through Kanto region!", "bulbasaur"],
+/** Logos are each site's own graphics, taken from the same 2000 captures; favicons barely existed then, so link pages showed logos instead. */
+type Link = [title: string, href: string, description: string, logo?: ImageMetadata];
+
+/** Every link points to a Wayback Machine capture from 2000, since most of these sites are gone. */
+const boards: Link[] = [
+	["Pojo Message Boards", "https://web.archive.org/web/20001210111000/http://www.pojo.com/messageboard.html", "Pojo's brand-new boards, opened in November 2000 and thousands of members already!", pojo],
+	["Pokémon Village Discussions", "https://web.archive.org/web/20000818064103/http://pokemonvillage.com/forum/", "The forum of Pokémon Village.", village],
+	["PsyPoke", "https://web.archive.org/web/20001019080628/http://www.psypoke.com/", "Big fan site. Its forums are where I met Gengar_FX!", psypoke],
+	["GameFAQs", "https://web.archive.org/web/20001109092100/http://www.gamefaqs.com/", "FAQs and the message boards for the Game Boy games.", gamefaqs],
+	["ezboard", "https://web.archive.org/web/20001109110400/http://www.ezboard.com/", "Free message boards. Lots of Pokémon clubs run their boards there.", ezboard],
 ];
-const clubs: [name: string, description: string, sprite: Sprite, members: number][] = [
-	["Psyduck Fanclub", "For fans of the confused duck Pokémon!", "psyduck", 342],
-	["Jigglypuff Singers", "Share your favorite Jigglypuff songs", "jigglypuff", 189],
-	["Pikachu World", "The #1 site for Pikachu lovers!", "pikachu", 1087],
-	["Psychic Alliance", "Mew and Mewtwo fans unite", "mewtwo", 567],
-	["Fire Types United", "Hot site for fire Pokémon trainers", "charizard", 455],
-	["Grass Kingdom", "Growing community of grass Pokémon lovers", "bulbasaur", 386],
-	["Water Trainers Club", "Dive into water Pokémon discussions!", "staryu", 478],
-	["Legendary Hunters", "Tracking rare and legendary Pokémon", "mew", 122],
+const sites: Link[] = [
+	["Pojo.com", "https://web.archive.org/web/20001019092444/http://www.pojo.com/", "Price guides and the card of the day. The prices in my shop come from Pojo's price guide!", pojo],
+	["Pokémon Village", "https://web.archive.org/web/20001019094127/http://pokemonvillage.com/", "A huge top sites list, news and an online arena.", village],
+	["The Pokémon Abode", "https://web.archive.org/web/20001027192646/http://www.pokemonabode.com/", "One of my favorite Pokémon sites."],
+	["PokemonGym.com", "https://web.archive.org/web/20001022051506/http://www.pokemongym.com/", "One of my favorite Pokémon sites.", gym],
+	["PokemonHQ.com", "https://web.archive.org/web/20001117120400/http://www.pokemonhq.com/", "One of my favorite Pokémon sites."],
+	["Pokémon World (official site)", "https://web.archive.org/web/20001109232400/http://www.pokemon.com/", "The official Pokémon site.", world],
+	["Wizards of the Coast - Pokémon TCG", "https://web.archive.org/web/20001109152700/http://www.wizards.com/pokemon/", "Official card rules and set lists."],
+];
+const sections: [title: string, links: Link[]][] = [
+	["Message Boards", boards],
+	["Cool Pokémon Sites", sites],
 ];
 ---
 
 <Layout title="Cool Pokémon Links">
-	<p class="mb-6 border border-yellow-400 bg-yellow-100 p-2 text-center"><Gif name="porygon" /> Want to exchange links? Email the webmaster!</p>
-	<div class="grid gap-4">
-		{links.map(([title, description, sprite]) => (
-			<a href="#" class="box flex items-center gap-4">
-				<Gif name={sprite} class="size-12 bg-blue-100 object-contain p-1" />
-				<span><b class="text-xl text-blue-600 underline">{title}</b><br />{description}</span>
-			</a>
-		))}
-	</div>
-	<h3 class="mt-8 text-center text-xl font-bold">★ Pokémon Fan Clubs ★</h3>
-	<hr />
-	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-		{clubs.map(([name, description, sprite, members]) => (
-			<div class="box bg-white text-center text-xs">
-				<Gif name={sprite} class="mx-auto h-12" />
-				<b class="text-sm">{name}</b>
-				<p class="my-1">{description}</p>
-				<span class="rounded-full bg-blue-100 px-2 text-blue-800">Members: {members}</span>
-			</div>
-		))}
-	</div>
-	<p class="mt-8 border border-yellow-300 bg-yellow-100 p-2 text-center text-sm">
+	<p class="mb-3 notice">
+		Want to exchange links? <a href="mailto:webmaster@pokestore-2000.com?subject=LINK EXCHANGE">Email me!</a>
+	</p>
+	{sections.map(([title, links]) => (
+		<section class="panel mb-3">
+			<h3 class="cathead">{title}</h3>
+			{links.map(([name, href, description, logo], i) => (
+				<div class:list={["flex items-center gap-3 p-2", i % 2 ? "bg-row2" : "bg-row1"]}>
+					<a {href} class="flex h-12 w-24 shrink-0 items-center justify-center">
+						{logo && <Image src={logo} alt={name} height={48} densities={[1, 2]} format="avif" class="max-h-12 w-auto max-w-24 object-contain" />}
+					</a>
+					<p><a {href} class="font-bold">{name}</a><br />{description}</p>
+				</div>
+			))}
+		</section>
+	))}
+	<p class="text-center text-[11px]">
 		<Gif name="geodude" class="inline h-4" /> This page is always under construction! Check back later for more links!
 	</p>
 </Layout>
