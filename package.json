@@ -2,10 +2,16 @@
 	"name": "pokestore-2000",
 	"private": true,
 	"type": "module",
+	"packageManager": "bun@1.4.4",
+	"engines": {
+		"bun": ">=1.4.4"
+	},
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro check && astro build",
-		"preview": "astro preview"
+		"preview": "astro preview",
+		"sprites": "bun scripts/sprites.ts",
+		"gifcities": "bun scripts/gifcities.ts"
 	},
 	"dependencies": {
 		"@astrojs/svelte": "^9.1.5",
@@ -15,6 +21,7 @@
 	"devDependencies": {
 		"@astrojs/check": "^0.9.12",
 		"@tailwindcss/vite": "^4.3.5",
+		"@types/bun": "^1.4.4",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^6"
 	}
