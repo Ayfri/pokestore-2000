@@ -14,7 +14,7 @@ if (clock) {
 const screenSize = document.querySelector("#screen");
 if (screenSize) {
 	const { width, height } = screen;
-	screenSize.textContent = width > 800 ? `${width}x${height}?!? WOW your monitor is HUGE! This site is optimized for 800x600` : "800x600, perfect!";
+	screenSize.textContent = `${width}x${height}`;
 }
 
 if (motion) {
@@ -52,8 +52,7 @@ if (motion && matchMedia("(pointer: fine)").matches) {
 	const sparkles = Array.from({ length: 12 }, (_, i) => {
 		const sparkle = document.createElement("span");
 		sparkle.className = "sparkle";
-		sparkle.textContent = "✦";
-		sparkle.style.color = colors[i % colors.length]!;
+		sparkle.style.backgroundColor = colors[i % colors.length]!;
 		document.body.append(sparkle);
 		return sparkle;
 	});
@@ -98,6 +97,6 @@ const winner = document.querySelector<HTMLDialogElement>("#winner");
 if (winner && !remember(sessionStorage, "winner")) {
 	setTimeout(() => winner.showModal(), 4000);
 	winner.addEventListener("close", () => {
-		if (winner.returnValue === "claim") alert("To receive your FREE Master Ball, please mail $9.99 shipping & handling to:\n\nPokéstore 2000\n1 Route 1\nPallet Town, KANTO\n\nAllow 6-8 weeks for delivery.");
+		if (winner.returnValue === "claim") alert("To receive your FREE Master Ball, please mail $9.99 shipping & handling to:\n\nPokéstore 2000\nP.O. Box 151\nColumbus, OH 43215\n\nAllow 6-8 weeks for delivery.");
 	});
 }

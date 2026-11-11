@@ -1,4 +1,4 @@
-# ★★★ POKÉSTORE 2000 ★★★
+# POKÉSTORE 2000
 
 <p align="center">
   <img src="src/assets/pokestore.webp" alt="Pokéstore Logo" width="400">
@@ -11,6 +11,8 @@ THIS IS THE **OFFICIAL** REPOSITORY FOR POKÉSTORE 2000 - THE #1 POKÉMON CARD S
 ### ~~~~~ FEATURES: ~~~~~
 
 - [X] AWESOME animated GIFs!!! (REAL ones from GeoCities)
+- [X] A REAL 2000 fan site look: small Verdana text on white panels, message-board-style blue header bars, Pokémon-logo titles and a sidebar menu!!!
+- [X] Photoshop-style header, banner, button, Neo Genesis montages and staff avatars!!!
 - [X] Shop for RARE Pokémon cards from Base Set, Jungle, Fossil AND Team Rocket!!!
 - [X] Boosters, theme decks, Game Boy games and GOODIES!!!
 - [X] Sign our GUESTBOOK!!!
@@ -28,6 +30,7 @@ THIS IS THE **OFFICIAL** REPOSITORY FOR POKÉSTORE 2000 - THE #1 POKÉMON CARD S
 - 16 MB RAM (32 MB RECOMMENDED)
 - 800x600 screen resolution (1024x768 RECOMMENDED)
 - Bun 1.4.4+
+- ImageMagick 7 (only to rebuild the montages)
 
 ### ~~~~~ INSTALLATION: ~~~~~
 
@@ -48,15 +51,19 @@ bun run build
 ```
 
 The site is static Astro pages with Svelte islands for the stateful widgets (cart, guestbook, poll, games, MIDI player, hit counter), and one
-bundled script for the site-wide gimmicks (cursor sparkles, falling Poké Balls, clock, popup, Konami code). Card scans are downloaded at
-build time and product photos (`src/assets/products`, from Bulbapedia) are local, both re-encoded to AVIF, and fonts are self-hosted through Astro's Fonts API.
+bundled script for the site-wide gimmicks (cursor sparkles, falling Poké Balls, clock, popup, Konami code). Text is Verdana, with Silkscreen for
+the pixel buttons, Titan One for the logo-style titles, VT323 for the LED counters and Comic Sans for the webmaster's personal bits; the web fonts
+are self-hosted through Astro's Fonts API. The header, 468x60 banner, 88x31 button, Neo Genesis teaser and the 5 staff avatars are montages built with ImageMagick 7
+(`bun montages`) into `src/assets/montages`. Card scans are downloaded at build time and product photos (`src/assets/products`, from Bulbapedia)
+are local, both re-encoded to AVIF.
 `wrangler.toml` serves `dist/` as Cloudflare Workers static assets, with cache rules in `public/_headers`.
 
-### ~~~~~ GIF SCRIPTS: ~~~~~
+### ~~~~~ GIF AND MONTAGE SCRIPTS: ~~~~~
 
 ```
 bun sprites                      # download every Pokémon of src/data.ts missing from public/gifs
 bun gifcities "under construction"   # search GeoCities GIFs, results land in scripts/gifcities.json
+bun montages                     # rebuild the header, banner, button, Neo Genesis and staff avatar montages (needs ImageMagick 7)
 ```
 
 ### ~~~~~ MADE BY: ~~~~~

@@ -1,40 +1,36 @@
 ---
 import { Image } from "astro:assets";
 import AddToCart from "../components/AddToCart.svelte";
-import Gif from "../components/Gif.astro";
 import { cards, price, sets } from "../data";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Card Shop">
-	<p class="mb-4 border-2 border-dashed border-red-600 bg-white p-2 text-center font-bold">
-		<Gif name="charizard" /> All cards are <u>Near Mint</u> unless noted, straight from the pack into a sleeve! <Gif name="charizard" />
-	</p>
-	<p class="mb-6 text-center text-sm">
-		Prices updated 11/05/2000. Can't find a card? <a href="mailto:webmaster@pokestore-2000.com">Email me</a>, I probably have it in a binder.
-		<a href="/order-info">How to order &gt;&gt;</a>
+	<p class="mb-3 notice">
+		All cards are <u>Near Mint</u> unless noted, straight from the pack into a sleeve! Prices updated 11/05/2000. Can't find a card?
+		<a href="mailto:webmaster@pokestore-2000.com">Email me</a>, I probably have it in a binder. <a href="/order-info">How to order &gt;&gt;</a>
 	</p>
 	{Object.values(sets).map(set => (
-		<h3 class="mt-8 mb-4 border-b-4 border-double border-navy text-2xl font-bold"><span class="rainbow">{set}</span></h3>
-		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-			{cards.filter(card => card.set === set).map(card => (
-				<article class="box relative bg-white p-3 text-sm">
-					<Gif name={card.sprite} class="absolute top-0 left-0 z-10 h-10" />
-					<span class="absolute top-4 right-4 z-10 -rotate-6 border border-yellow-600 bg-yellow-300 px-1 text-xs font-bold">{card.rarity}</span>
-					<Image src={card.image} alt={card.name} width={180} height={251} densities={[1, 2]} format="avif" class="mx-auto" />
-					<h4 class="mt-2 text-lg font-bold text-navy">{card.name}</h4>
-					<p class="text-xs text-gray-600">{card.set} #{card.number} - Near Mint</p>
-					<p class:list={["text-xs font-bold", card.stock <= 2 ? "animate-blink text-red-600" : "text-green-700"]}>
-						{card.stock <= 2 ? `ONLY ${card.stock} LEFT!!` : `In stock: ${card.stock}`}
-					</p>
-					<div class="mt-2 flex items-center justify-between gap-1">
-						<b class="text-lg text-green-700">{price(card.price)}</b>
-						<AddToCart client:idle id={card.id} />
-					</div>
-				</article>
-			))}
-		</div>
+		<section class="panel mb-3">
+			<h3 class="cathead">{set}</h3>
+			<div class="grid grid-cols-2 gap-2 p-2 sm:grid-cols-3 lg:grid-cols-4">
+				{cards.filter(card => card.set === set).map(card => (
+					<article class="relative notice">
+						<span class="absolute top-1 right-1 z-10 border border-yellow-600 bg-yellow-300 px-1 text-[11px]">{card.rarity}</span>
+						<Image src={card.image} alt={card.name} width={180} height={251} densities={[1, 2]} format="avif" class="mx-auto" />
+						<h4 class="mt-2 font-bold text-navy">{card.name}</h4>
+						<p class="text-[11px] text-gray-600">{card.set} #{card.number} - Near Mint</p>
+						<p class:list={["text-[11px] font-bold", card.stock <= 2 ? "text-red-600" : "text-green-700", card.stock === 1 && "animate-blink"]}>
+							{card.stock <= 2 ? `ONLY ${card.stock} LEFT!!` : `In stock: ${card.stock}`}
+						</p>
+						<div class="mt-2 flex flex-wrap items-center justify-between gap-1">
+							<b class="text-sm text-green-700">{price(card.price)}</b>
+							<AddToCart client:idle id={card.id} />
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
 	))}
-	<p class="my-6 text-center"><Gif name="fire" class="mx-auto max-w-full" /></p>
 	<p class="text-center font-bold">Neo Genesis arriving 12/16! <span class="font-normal text-red-600">Pre-order now and get a FREE Pokémon League pin!</span></p>
 </Layout>

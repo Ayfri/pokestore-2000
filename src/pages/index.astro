@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import Gif from "../components/Gif.astro";
+import neo from "../assets/montages/neo.webp";
 import Poll from "../components/Poll.svelte";
 import { cards, price } from "../data";
 import Layout from "../layouts/Layout.astro";
@@ -22,45 +22,47 @@ const corner = [
 	["Listening to", "Pokémon 2.B.A. Master soundtrack (again)"],
 	["Playing", "Pokémon Gold - 5 badges!"],
 	["Reading", "Nintendo Power #138"],
-	["Best pull this month", "a shadowless holo Chansey from a pack at the dollar store!!!"],
+	["Best pull this month", "a holo Chansey from a pack at the dollar store!!!"],
 	["Most hated card", "Energy Removal. And Impostor Professor Oak."],
 	["Wants", "a Game Boy Color in Atomic Purple for xmas"],
 ];
 ---
 
 <Layout title="Your #1 Pokémon Cards Source!">
-	<p class="mb-4 text-center"><Gif name="welcome" class="mx-auto" /></p>
-	<p class="mb-6 text-center">
+	<p class="mb-3">
 		Hi and welcome to <b>Pokéstore 2000</b>, the best place on the World Wide Web for <b>rare Pokémon cards</b>! We sell, buy and TRADE. All cards
 		come from my own collection and are kept in sleeves. <a href="/order-info">Click here to learn how to order!</a>
 	</p>
-	<div class="grid gap-6 md:grid-cols-3">
-		<section class="box bg-white md:col-span-2">
-			<h3 class="mb-4 text-xl font-bold text-navy"><Gif name="porygon" /> What's New?</h3>
-			{news.map(([date, text]) => (
-				<p class="mb-3 border-b-2 border-dotted border-silver pb-2"><b class="font-mono text-red-700">[{date}]</b> {text}</p>
-			))}
+	<div class="grid gap-3 md:grid-cols-3">
+		<section class="panel md:col-span-2">
+			<h3 class="cathead">What's New?</h3>
+			<div>
+				{news.map(([date, text], i) => (
+					<p class:list={["p-2", i % 2 ? "bg-row2" : "bg-row1"]}><b class="text-red-700">[{date}]</b> {text}</p>
+				))}
+			</div>
 		</section>
-		<div class="grid content-start gap-6">
-			<section class="box bg-peach text-center">
-				<h3 class="mb-2 font-bold"><span class="animate-flame text-white">HOT</span> Card of the Week</h3>
-				<a href="/shop">
-					<Image src={featured.image} alt={featured.name} width={160} height={223} densities={[1, 2]} format="avif" class="mx-auto mb-2 border-4 border-yellow-400 transition hover:rotate-2" />
-				</a>
-				<p class="font-bold">{featured.name} ({featured.set})</p>
-				<p class="animate-blink font-bold text-red-600">ONLY {price(featured.price)}!</p>
+		<div class="grid content-start gap-3">
+			<section class="panel text-center">
+				<h3 class="cathead">Card of the Week</h3>
+				<div class="p-2">
+					<a href="/shop">
+						<Image src={featured.image} alt={featured.name} width={160} height={223} densities={[1, 2]} format="avif" class="mx-auto mb-2 border border-black" />
+					</a>
+					<p class="font-bold">{featured.name} ({featured.set})</p>
+					<p class="font-bold text-red-600">ONLY {price(featured.price)}!</p>
+				</div>
 			</section>
 			<Poll client:only="svelte" />
 		</div>
 	</div>
-	<p class="my-6 text-center"><Gif name="fire" class="mx-auto max-w-full" /></p>
-	<section class="box bg-lilac">
-		<h3 class="mb-2 font-bold">★ Webmaster's Corner ★</h3>
-		<ul class="text-sm">
+	<section class="panel mt-3 font-comic">
+		<h3 class="cathead font-sans">Webmaster's Corner</h3>
+		<ul class="p-2">
 			{corner.map(([label, value]) => <li><b>{label}:</b> {value}</li>)}
 		</ul>
 	</section>
-	<div class="mt-6 bg-[repeating-linear-gradient(45deg,#000_0_10px,#ff0_10px_20px)] p-3">
-		<p class="bg-cream p-3 text-center text-xl font-bold"><span class="rainbow">Neo Genesis coming 12/16/2000!</span></p>
-	</div>
+	<p class="mt-3 text-center">
+		<Image src={neo} alt="Neo Genesis, in stores 12/16/2000 - pre-order your box now! (Lugia banner)" width={468}format="avif" quality={90} class="mx-auto h-auto max-w-full" />
+	</p>
 </Layout>

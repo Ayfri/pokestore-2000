@@ -1,6 +1,6 @@
 ---
 import { Font, Image } from "astro:assets";
-import logo from "../assets/pokestore.webp";
+import banner from "../assets/montages/header.webp";
 import Badges from "../components/Badges.astro";
 import CartCount from "../components/CartCount.svelte";
 import Gif from "../components/Gif.astro";
@@ -18,7 +18,7 @@ type Link = [href: string, label: string, sprite: Sprite];
 const { title } = Astro.props;
 /** With build.format "file" the build-time pathname is /shop.html or /index.html, while dev serves /shop and /. */
 const path = Astro.url.pathname.replace(/(index)?\.html$/, "");
-const description = "Welcome to Pokéstore 2000! The #1 destination for rare and collectible Pokémon cards.";
+const description = "Welcome to Pokéstore 2000! The #1 place on the web for rare and collectible Pokémon cards.";
 const nav: Link[] = [
 	["/", "Home", "pikachu"],
 	["/shop", "Cards", "pokeball"],
@@ -50,7 +50,7 @@ const updated = y2k().toLocaleDateString("en-US", { month: "2-digit", day: "2-di
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>★☆★ {title} - Pokéstore 2000 ★☆★</title>
+		<title>{title} - Pokéstore 2000</title>
 		<meta name="description" content={description} />
 		<meta property="og:title" content={`${title} - Pokéstore 2000`} />
 		<meta property="og:description" content={description} />
@@ -58,94 +58,80 @@ const updated = y2k().toLocaleDateString("en-US", { month: "2-digit", day: "2-di
 		<link rel="icon" href="/gifs/pokeball.gif" />
 		<Font cssVariable="--font-comic-neue" />
 		<Font cssVariable="--font-vt323" />
+		<Font cssVariable="--font-silkscreen" />
+		<Font cssVariable="--font-titan-one" />
 	</head>
 	<body>
-		<div class="mb-4 flex flex-wrap items-center justify-center gap-x-4 text-center text-xs text-white">
-			<span><Gif name="geodude" /> <span class="animate-blink">SITE UNDER CONSTRUCTION</span> <Gif name="geodude" /></span>
-			<span id="clock" class="font-led text-base text-yellow-300"></span>
-		</div>
-
-		<header class="box mb-8 bg-lilac">
-			<div class="mb-4 flex items-center justify-between gap-2">
-				<Gif name="pokeball" class="hidden h-12 sm:block" />
-				<a href="/" class="min-w-0"><Image src={logo} alt="Pokéstore 2000" height={80} densities={[1, 2]} format="avif" loading="eager" fetchpriority="high" /></a>
-				<a href="/cart" class="btn whitespace-nowrap"><Gif name="pikachu" />Cart (<CartCount client:only="svelte" />)</a>
-			</div>
-			<nav class="grid gap-1 bg-navy p-2">
-				<div class="flex flex-wrap justify-center gap-2">
-					{nav.map(([href, label, sprite]) => (
-						<a {href} class:list={["btn", path === href && "bg-yellow-300"]}><Gif name={sprite} class="h-4" />{label}</a>
-					))}
+		<div class="mx-auto max-w-[966px] border border-black bg-[#0a0a3c]">
+			<header>
+				<a href="/"><Image src={banner} alt="Pokéstore 2000 - Your #1 source for rare Pokémon cards" width={964}format="avif" quality={90} loading="eager" fetchpriority="high" class="block h-auto w-full" /></a>
+				<div class="flex items-center justify-between gap-2 border-y border-black bg-linear-to-b from-[#2b3f9e] to-[#0d1a5c] px-2 py-1 font-pixel text-[8px] text-white">
+					<span id="clock"></span>
+					<a href="/cart" class="text-yellow-300 no-underline visited:text-yellow-300">» MY CART (<CartCount client:only="svelte" />)</a>
 				</div>
-				<div class="flex flex-wrap items-center justify-center gap-2 border-t-2 border-dashed border-sky pt-2">
-					<b class="rainbow text-sm">★ FUN ZONE ★</b>
-					{fun.map(([href, label, sprite]) => (
-						<a {href} class:list={["btn relative text-sm", path === href && "bg-yellow-300"]}>
-							<Gif name={sprite} class="h-4" />{label}
-							<span class="absolute -top-2 -right-2 animate-bounce bg-red-600 px-1 text-[9px] text-yellow-300">NEW!</span>
-						</a>
-					))}
-				</div>
-			</nav>
-			<marquee class="mt-4 bg-black p-1 font-bold text-yellow-300">
-				<Gif name="charizard" /> <span class="animate-flame text-white">HOT DEAL!</span> Buy any Charizard card and get a free Magikarp! Limited time offer!
-				<Gif name="pichu" /> Gold & Silver are OUT NOW in the USA!!! <Gif name="pichu" />
-			</marquee>
-		</header>
+				<marquee scrollamount="4" class="block border-b border-black bg-black py-0.5 text-[11px] text-yellow-300">
+					<b>HOT DEAL:</b> buy any Charizard card and get a free Magikarp! &nbsp;&nbsp;&nbsp; Gold & Silver are out now in the USA! &nbsp;&nbsp;&nbsp; Neo Genesis pre-orders are open!
+				</marquee>
+			</header>
 
-		<main class="box bg-cream">
-			<h2 class="mb-6 flex items-center justify-center gap-4 text-2xl font-bold">
-				<Gif name="pokeball" class="h-8" /><span class="rainbow">{title}</span><Gif name="pokeball" class="h-8" />
-			</h2>
-			<slot />
-		</main>
-
-		<footer class="box mt-8 bg-mint text-center text-xs">
-			<marquee behavior="alternate" class="font-bold text-red-600">★★★ THANK YOU FOR VISITING POKÉSTORE 2000! ★★★</marquee>
-			<p class="my-4 flex flex-wrap items-center justify-center gap-2 font-bold">
-				<a href={ring[(index - 1 + ring.length) % ring.length]} class="btn text-xs">&lt;&lt; Prev</a>
-				<span class="border-2 border-purple-500 bg-purple-200 px-2 py-1"><Gif name="mew" class="inline h-4" /> PokéWebRing <Gif name="mew" class="inline h-4" /></span>
-				<a href={random} class="btn text-xs">Random</a>
-				<a href={ring[(index + 1) % ring.length]} class="btn text-xs">Next &gt;&gt;</a>
-			</p>
-			<MidiPlayer client:idle />
-			<div class="my-4 grid gap-2 sm:grid-cols-3 [&>div]:border [&>div]:border-blue-500 [&>div]:bg-blue-50 [&>div]:p-2 [&_b]:underline">
-				<div>
-					<b>SITE INFO</b>
-					<p class="my-2">
-						You are visitor #<br />
+			<div class="flex flex-col sm:flex-row">
+				<aside class="shrink-0 border-black p-2 sm:w-44 sm:border-r [&_.logo-text]:mt-3 [&_.logo-text]:mb-1 [&_.logo-text]:text-lg [&_.logo-text]:first:mt-0">
+					<nav>
+						<p class="logo-text">Navigation</p>
+						<ul>
+							{nav.map(([href, label, sprite]) => (
+								<li><a {href} class="side-link" aria-current={path === href ? "page" : undefined}><Gif name={sprite} class="h-4" />{label}</a></li>
+							))}
+						</ul>
+						<p class="logo-text">Fun Zone</p>
+						<ul>
+							{fun.map(([href, label, sprite]) => (
+								<li>
+									<a {href} class="side-link" aria-current={path === href ? "page" : undefined}><Gif name={sprite} class="h-4" />{label}</a>
+									{href === "/whos-that" && <span class="ml-5 bg-red-600 px-0.5 font-pixel text-[8px] text-white">NEW</span>}
+								</li>
+							))}
+						</ul>
+					</nav>
+					<p class="logo-text">Site Info</p>
+					<div class="text-[11px] text-white">
+						<p>You are visitor #</p>
 						<HitCounter client:only="svelte"><HitCounter slot="fallback" /></HitCounter>
-					</p>
-					<p>Last Updated: {updated}</p>
-					<p>Download time: 56k - 8.2 sec</p>
-				</div>
-				<div>
-					<b>CONTACT US</b>
-					<p><a href="mailto:webmaster@pokestore-2000.com" class="text-blue-600 underline"><Gif name="porygon" class="inline h-6 animate-spin-y" />EMAIL ME!!</a></p>
-					<p><Gif name="pokeball" class="inline h-4" /> ICQ: 48271936</p>
-					<p><Gif name="magikarp" class="inline h-4" /> AIM: PokeStore2000</p>
-				</div>
-				<div>
-					<b>COPYRIGHT</b>
-					<p class="my-2">© 2000 Pokéstore. Pokémon and all related characters are © Nintendo / Game Freak.</p>
-					<p class="font-bold text-red-600">NO FRAMES • NO JAVA • NO FLASH</p>
-					<p class="opacity-50">v1.9.2 BETA</p>
-				</div>
+						<p class="mt-1 text-[#99a]">Updated {updated}</p>
+					</div>
+				</aside>
+
+				<main class="min-w-0 flex-1 bg-white p-3">
+					<h1 class="logo-text mb-3 text-[26px] leading-tight">{title}</h1>
+					<slot />
+				</main>
 			</div>
-			<Badges />
-			<p class="mt-4 text-gray-600">Your screen: <span id="screen">800x600</span></p>
-			<p class="my-2 text-sm font-bold">
-				<Gif name="pikachu" class="inline h-5" /> Site handcrafted with ♥ and Notepad by <a href="https://github.com/Ayfri">Ayfri</a>
-				- <a href="https://github.com/Ayfri/pokestore-2000">view the source</a> <Gif name="pikachu" class="inline h-5" />
-			</p>
-			<a href="/downloads" class="animate-blink text-blue-700">[ DOWNLOAD THE POKÉSTORE TOOLBAR NOW! ]</a>
-		</footer>
+
+			<footer class="border-t border-black bg-[#e8ebf7] p-3 text-center text-[11px]">
+				<p class="mb-2 flex flex-wrap items-center justify-center gap-2">
+					<a href={ring[(index - 1 + ring.length) % ring.length]}>&lt;&lt; Prev</a> |
+					<span><Gif name="mew" class="inline h-4" /> <b>PokéWebRing</b></span> |
+					<a href={random}>Random</a> |
+					<a href={ring[(index + 1) % ring.length]}>Next &gt;&gt;</a>
+				</p>
+				<MidiPlayer client:idle />
+				<Badges />
+				<p class="mt-3">
+					<a href="mailto:webmaster@pokestore-2000.com">E-mail the webmaster</a> - ICQ: 48271936 - AIM: PokeStore2000
+				</p>
+				<p class="mt-1 text-gray-600">
+					© 2000 Pokéstore. Pokémon and all related characters are © Nintendo / Game Freak. Pokéstore is not affiliated with Nintendo.<br />
+					Best viewed with Internet Explorer 5 at 1024x768. Your screen: <span id="screen">1024x768</span><br />
+					Made with Notepad by <a href="https://github.com/Ayfri">Ayfri</a> - Graphics by Gengar_FX - <a href="https://github.com/Ayfri/pokestore-2000">view the source</a>
+				</p>
+			</footer>
+		</div>
 
 		<dialog id="winner" class="win m-auto max-w-sm backdrop:bg-black/40">
 			<div class="titlebar"><span>Congratulations!!!.exe</span><form method="dialog"><button class="btn px-1 py-0 text-xs" aria-label="Close">x</button></form></div>
 			<div class="flex items-center gap-3 p-4 text-sm">
-				<Gif name="masterball" class="h-10 animate-bounce" />
-				<p><b class="animate-blink text-red-600">YOU ARE THE 1,000,000th VISITOR!!!</b><br />Click CLAIM NOW to receive your FREE Master Ball!</p>
+				<Gif name="masterball" class="h-10" />
+				<p><b class="text-red-600">YOU ARE THE 1,000,000th VISITOR!!!</b><br />Click CLAIM NOW to receive your FREE Master Ball!</p>
 			</div>
 			<form method="dialog" class="flex justify-center gap-2 pb-3">
 				<button class="btn" value="claim">CLAIM NOW!</button>

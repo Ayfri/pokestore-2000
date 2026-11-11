@@ -15,6 +15,8 @@ export default defineConfig({
 	fonts: [
 		{ provider: fontProviders.google(), name: "Comic Neue", cssVariable: "--font-comic-neue", weights: [400, 700], styles: ["normal"], fallbacks: ["cursive"] },
 		{ provider: fontProviders.google(), name: "VT323", cssVariable: "--font-vt323", styles: ["normal"], fallbacks: ["monospace"] },
+		{ provider: fontProviders.google(), name: "Silkscreen", cssVariable: "--font-silkscreen", weights: [400], styles: ["normal"], fallbacks: ["monospace"] },
+		{ provider: fontProviders.google(), name: "Titan One", cssVariable: "--font-titan-one", weights: [400], styles: ["normal"], fallbacks: ["Arial Black", "sans-serif"] },
 	],
 	/** "file" emits shop.html, which Cloudflare serves at /shop directly, where shop/index.html would cost a redirect to /shop/. */
 	trailingSlash: "never",

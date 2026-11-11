@@ -22,6 +22,6 @@ const photo = photos[`../assets/products/${product.id}.webp`]?.default;
 ) : (
 	<div class="mx-auto flex h-48 w-36 flex-col items-center justify-center gap-3 rounded-lg border-2 border-black/40 bg-sky-800 p-2 text-white">
 		<Gif name={product.sprite} class="max-h-20 drop-shadow-[2px_2px_0_#0008]" />
-		<span class="text-center font-wordart text-xs leading-tight tracking-wide [text-shadow:1px_1px_0_#000]">{product.name.toUpperCase()}</span>
+		<span class="text-center text-[11px] leading-tight font-bold [text-shadow:1px_1px_0_#000]">{product.name.toUpperCase()}</span>
 	</div>
 )}

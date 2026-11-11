@@ -1,57 +1,49 @@
 @import "tailwindcss";
 
-/* Comic Neue and VT323 come from Astro's Fonts API; Comic Neue is only a stand-in for systems without Comic Sans, so most Windows visitors never download it. */
+/*
+ * Fonts from Astro's Fonts API. Body text is Verdana like nearly every 2000 fan site and message board; Comic Sans is only the webmaster's personal voice.
+ * Comic Neue is a stand-in for systems without Comic Sans, so most Windows visitors never download it.
+ * Silkscreen (Kottke, 1999) is a bitmap design that only renders crisp at multiples of 8px.
+ */
 @theme inline {
-	--font-sans: "Comic Sans MS", "Comic Sans", var(--font-comic-neue);
+	--font-comic: "Comic Sans MS", "Comic Sans", var(--font-comic-neue);
 	--font-led: var(--font-vt323);
+	--font-pixel: var(--font-silkscreen);
+	--font-logo: var(--font-titan-one);
 }
 
 @theme {
+	--font-sans: Verdana, Tahoma, Geneva, Arial, sans-serif;
 	--font-ui: Tahoma, "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
-	--font-wordart: Impact, "Arial Black", Haettenschweiler, sans-serif;
 	--font-mono: "Courier New", Courier, monospace;
 
-	/* The 216-color web-safe palette, plus the default Netscape link colors. */
+	/* Windows 16-color navy, silver and teal, plus the default Netscape link colors. */
 	--color-navy: #000080;
 	--color-silver: #c0c0c0;
 	--color-teal: #008080;
-	--color-cream: #ffffcc;
-	--color-lilac: #ccccff;
-	--color-mint: #ccffcc;
-	--color-peach: #ffcc99;
-	--color-sky: #99ccff;
 	--color-link: #0000ee;
 	--color-visited: #551a8b;
+	--color-frame: #000066;
+	--color-row1: #eef1fb;
+	--color-row2: #dee3f0;
 
 	--animate-blink: blink 1s step-end infinite;
-	--animate-rainbow: rainbow 5s linear infinite;
-	--animate-spin-y: spin-y 2s linear infinite;
-	--animate-flame: flame 0.6s ease-in-out infinite alternate;
 	--animate-fall: fall linear infinite;
 
 	@keyframes blink {
 		50% { opacity: 0; }
-	}
-	@keyframes spin-y {
-		to { transform: rotateY(360deg); }
-	}
-	@keyframes flame {
-		from { text-shadow: 0 0 4px #ff0, 0 -2px 6px #f80, 0 -5px 10px #f00; }
-		to { text-shadow: 0 0 6px #ff0, 0 -4px 10px #f80, 0 -9px 14px #f00; }
 	}
 	@keyframes fall {
 		from { transform: translate(0, -10vh) rotate(0); }
 		50% { transform: translate(40px, 50vh) rotate(180deg); }
 		to { transform: translate(0, 110vh) rotate(360deg); }
 	}
-	@keyframes rainbow {
-		to { filter: hue-rotate(360deg); }
-	}
 }
 
 @layer base {
+	/* 12px Verdana is the text size of phpBB's subSilver boards and most fan sites. */
 	body {
-		@apply bg-navy bg-[url(/gifs/stars.gif)] p-4 font-sans;
+		@apply bg-[#000033] bg-[url(/gifs/stars.gif)] px-2 py-4 font-sans text-xs;
 	}
 
 	a {
@@ -66,6 +58,59 @@
 	button, input, textarea, select {
 		@apply font-ui;
 	}
+}
+
+/*
+ * IE 5.5's colored scrollbars (scrollbar-face-color and friends), rebuilt with ::-webkit-scrollbar: bevelled face, dithered track, yellow arrows.
+ * Chromium drops these pseudo-elements once scrollbar-color is set, so scrollbar-color only goes to browsers without them (Firefox).
+ */
+@supports not selector(::-webkit-scrollbar) {
+	html {
+		scrollbar-color: #2b3f9e #000033;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 16px;
+	height: 16px;
+	background: repeating-conic-gradient(#0d1a5c 0 25%, #000033 0 50%) 0 0 / 2px 2px;
+}
+
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-button:single-button {
+	background-color: #2b3f9e;
+	box-shadow: inset 1px 1px #8fa0ff, inset -1px -1px #000, inset 2px 2px #4b5fc0, inset -2px -2px #0d1a5c;
+}
+
+::-webkit-scrollbar-button:single-button {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+::-webkit-scrollbar-button:single-button:active {
+	box-shadow: inset 1px 1px #0d1a5c, inset -1px -1px #4b5fc0;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4'%3E%3Cpath d='M3.5 0 7 4H0z' fill='%23ffcb05'/%3E%3C/svg%3E");
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4'%3E%3Cpath d='M0 0h7L3.5 4z' fill='%23ffcb05'/%3E%3C/svg%3E");
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='7'%3E%3Cpath d='M0 3.5 4 0v7z' fill='%23ffcb05'/%3E%3C/svg%3E");
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='7'%3E%3Cpath d='M0 0l4 3.5L0 7z' fill='%23ffcb05'/%3E%3C/svg%3E");
+}
+
+::-webkit-scrollbar-corner {
+	background: #2b3f9e;
 }
 
 /* Every animation on the site is decoration, so reduced motion simply freezes them all. */
@@ -88,23 +133,36 @@
 	@apply flex items-center justify-between gap-2 bg-linear-to-r from-navy to-[#1084d0] px-1 py-0.5 text-sm font-bold text-white;
 }
 
-/* What <table border="4"> looked like: a ridged silver frame around a flat colored cell. */
-@utility box {
-	@apply border-4 border-silver bg-white p-4 [border-style:ridge];
+/* A table cell with border="1" bordercolor="#000066": the plain frame real sites wrapped every block in. */
+@utility panel {
+	@apply border border-frame bg-white;
+}
+
+@utility notice {
+	@apply border border-frame bg-row1 p-2;
+}
+
+/* The gradient header bar of 2000s message boards, the most copied look of the time. */
+@utility cathead {
+	@apply border-b border-frame bg-linear-to-b from-[#4b6fd6] to-[#0d2273] px-2 py-1 text-[11px] font-bold tracking-wide text-white [text-shadow:1px_1px_0_#000];
+}
+
+/* Title text in the Pokémon logo style (yellow fill, blue outline, hard shadow), how sites made their heading GIFs in Paint Shop Pro. */
+@utility logo-text {
+	@apply font-logo tracking-wide text-[#ffcb05] [paint-order:stroke_fill] [-webkit-text-stroke:5px_#2a5bb8] [text-shadow:2px_2px_0_#000];
+}
+
+@utility side-link {
+	@apply flex items-center gap-1 py-px text-[11px] font-bold text-white no-underline visited:text-white hover:text-yellow-300 hover:underline aria-[current=page]:text-yellow-300;
 }
 
 /* The classic 88x31 link button size every site had a wall of. */
 @utility badge {
-	@apply inline-flex h-[31px] w-[88px] flex-col items-center justify-center overflow-hidden border text-center font-ui text-[9px] leading-tight font-bold no-underline;
-}
-
-/* WordArt: chunky Impact with a hard navy extrusion; drop-shadow follows the clipped gradient where text-shadow would show through it. */
-@utility rainbow {
-	@apply animate-rainbow bg-linear-to-r from-red-500 via-green-500 to-violet-500 bg-clip-text font-wordart tracking-wide text-transparent drop-shadow-[2px_2px_0_#000080];
+	@apply inline-flex h-[31px] w-[88px] flex-col items-center justify-center overflow-hidden border text-center font-pixel text-[8px] leading-[10px] no-underline;
 }
 
 .sparkle {
-	@apply pointer-events-none fixed top-0 left-0 z-50 text-sm;
+	@apply pointer-events-none fixed top-0 left-0 z-50 size-[3px];
 }
 
 /* Konami code MissingNo. mode: the jitter steps twice a second, below the 3 flashes per second seizure guideline. */

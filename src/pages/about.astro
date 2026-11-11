@@ -1,57 +1,73 @@
 ---
-import Gif from "../components/Gif.astro";
-import type { Sprite } from "../data";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import ayfri from "../assets/montages/avatar-ayfri.webp";
+import darkcharizard from "../assets/montages/avatar-darkcharizard.webp";
+import gengar from "../assets/montages/avatar-gengar_fx.webp";
+import mom from "../assets/montages/avatar-mom.webp";
+import pikaprincess from "../assets/montages/avatar-pikaprincess.webp";
 import Layout from "../layouts/Layout.astro";
 
-const team: [name: string, role: string, sprite: Sprite][] = [
-	["Ash", "Founder", "pikachu"],
-	["Gary", "Card Expert", "charmander"],
-	["Misty", "Customer Support", "squirtle"],
-	["Brock", "Shipping Manager", "geodude"],
+const team: [handle: string, role: string, line: string, avatar: ImageMetadata][] = [
+	["Ayfri", "Founder & Webmaster", "HTML, news and orders. Every page is typed by hand in Notepad.", ayfri],
+	["DarkCharizard", "Trades & Prices", "Tom, 15, my best friend from the next street. He checks every card's condition and can spot a fake holo from across the cafeteria.", darkcharizard],
+	["Gengar_FX", "Graphics", "17, lives in Texas. We met on the Psypoke forums in March 2000 and never met in real life. Made the banner, the buttons and the avatars in Paint Shop Pro 6. Takes graphics requests by email.", gengar],
+	["PikaPrincess", "Newsletter Art", "My little sister, 9. She draws the newsletter pictures and picks the poll questions.", pikaprincess],
+	["Mom", "Shipping & \"the bank\"", "Ships every order. She refuses to have a nickname, so Gengar_FX gave her a Snorlax \"because she says she's always tired\".", mom],
 ];
 ---
 
 <Layout title="About Us">
-	<div class="box space-y-4">
-		<h3 class="text-xl font-bold">Our Story</h3>
-		<p>Welcome to Pokéstore 2000! We started this website in the year 2000 to share our passion for Pokémon cards with trainers around the world.</p>
-		<p>
-			Founded by a group of dedicated Pokémon card collectors, our shop was born out of a love for the trading card game. What started as a small
-			collection among friends has grown into the premier destination for rare and high-quality Pokémon cards.
-		</p>
-		<div class="border-2 border-navy bg-lilac p-4">
-			<h3 class="mb-2 text-lg font-bold">About the Webmaster</h3>
-			<p class="text-sm">
-				Hi!!! I'm <b>Kevin</b> (aka <i>PokeMasterK</i> on AIM), I'm 14 and I live in Ohio. I made this whole site myself in Notepad after reading
-				"HTML for Dummies" from the library. My mom helps with the shipping and my little sister draws the pictures for the newsletter. When I'm not
-				updating the site I'm playing Pokémon Gold or practicing my Haymaker deck for the next Pokémon League night at the mall!
-			</p>
-		</div>
-		<div class="border-2 border-navy bg-white p-4">
-			<h3 class="mb-2 text-lg font-bold">Pokéstore History</h3>
-			<ul class="ml-6 list-disc text-sm">
-				<li><b>Dec 1999</b> - Got 3 Base Set booster boxes for Christmas. Way too many doubles!!</li>
-				<li><b>Jan 2000</b> - Pokéstore opens on a free host with a 2 MB limit</li>
-				<li><b>Mar 2000</b> - 1,000 visitors!!! Added the guestbook</li>
-				<li><b>Jun 2000</b> - Moved to our own domain, pokestore-2000.com ($35/year!)</li>
-				<li><b>Oct 2000</b> - 500th order shipped. Thank you trainers!!!</li>
-			</ul>
-		</div>
-		<div class="border-2 border-yellow-400 bg-yellow-100 p-4">
-			<p class="text-center font-bold">🌟 Site Awards 🌟</p>
-			<ul class="ml-6 list-disc">
-				<li>Best Pokémon Site 2000 - PokéWebRing</li>
-				<li>Cool Site of the Day - March 15, 2000</li>
-				<li>Featured Pokémon Fan Page - Kanto Region</li>
-			</ul>
-		</div>
-		<div class="border-2 border-blue-400 bg-blue-100 p-4">
-			<h3 class="mb-2 text-lg font-bold">Meet Our Team</h3>
-			<div class="flex flex-wrap justify-center gap-6 text-center">
-				{team.map(([name, role, sprite]) => (
-					<div><Gif name={sprite} class="mx-auto h-16" /><b>{name}</b><p class="text-xs">{role}</p></div>
+	<div class="grid gap-3">
+		<section class="panel font-comic">
+			<h3 class="cathead font-sans">About the Webmaster</h3>
+			<div class="space-y-2 p-2">
+				<p>
+					Hi!!! I'm <b>Ayfri</b>, I'm 14 and I was born in France. My dad got transferred for his job in 1998 so now I live in Columbus, Ohio. That's why my
+					English is sometimes funny, sorry!!
+				</p>
+				<p>
+					I started collecting Pokémon cards with a Base Set booster at school in 1999 and got hooked. I learned HTML in Notepad from a book at the
+					library, and voilà, Pokéstore 2000 was born. You can find me on AIM (<i>PokeStore2000</i>) and ICQ (48271936).
+				</p>
+				<p>
+					When I'm not updating the site I'm playing Pokémon Gold or practicing my Haymaker deck for the next Pokémon League night at the mall!
+				</p>
+			</div>
+		</section>
+		<section class="panel">
+			<h3 class="cathead">The Pokéstore Team</h3>
+			<div class="grid grid-cols-2 gap-3 p-2 text-center sm:grid-cols-3 lg:grid-cols-5">
+				{team.map(([handle, role, line, avatar]) => (
+					<div>
+						<Image src={avatar} alt="" width={100}format="avif" class="mx-auto mb-1" />
+						<b>{handle}</b>
+						<p class="font-bold text-navy">{role}</p>
+						<p class="mt-1 text-[11px]">{line}</p>
+					</div>
 				))}
 			</div>
+		</section>
+		<div class="grid gap-3 md:grid-cols-2">
+			<section class="panel">
+				<h3 class="cathead">Pokéstore History</h3>
+				<ul class="ml-6 list-disc p-2">
+					<li><b>Dec 1999</b> - Got 3 Base Set booster boxes for Christmas. Way too many doubles!!</li>
+					<li><b>Jan 2000</b> - Pokéstore opens on GeoCities (geocities.com/EnchantedForest/Glade/4821) with a 2 MB limit</li>
+					<li><b>Mar 2000</b> - Met Gengar_FX on the Psypoke forums, new banner!</li>
+					<li><b>Apr 2000</b> - 1,000th visitor!!! Added the guestbook</li>
+					<li><b>Jun 2000</b> - Moved to our own domain, pokestore-2000.com ($35/year!)</li>
+					<li><b>Aug 2000</b> - DarkCharizard joins the team for trades</li>
+					<li><b>Oct 2000</b> - 500th order shipped. Thank you trainers!!!</li>
+				</ul>
+			</section>
+			<section class="panel self-start">
+				<h3 class="cathead">Site Awards</h3>
+				<ul class="ml-6 list-disc p-2">
+					<li>Pokémon Village Top Sites - #37</li>
+					<li>PokéWebRing Site of the Month - September 2000</li>
+				</ul>
+			</section>
 		</div>
 	</div>
 </Layout>

@@ -38,14 +38,14 @@
 	}
 </script>
 
-<div class="mx-auto max-w-md border-8 border-red-600 bg-sky p-4 [border-style:ridge] text-center">
-	<p class="text-2xl font-black text-yellow-300 [-webkit-text-stroke:1.5px_#1d4ed8]">Who's That Pokémon?!</p>
+<div class="panel mx-auto max-w-md bg-row1 p-3 text-center">
+	<p class="logo-text text-[22px]">Who's That Pokémon?!</p>
 	<div class="my-4 flex h-32 items-center justify-center">
 		<img src="/gifs/{answer}.gif" alt={guess ? answer : "Mystery Pokémon"} class="max-h-32 scale-150 transition duration-500" style:filter={guess ? "none" : "brightness(0)"} />
 	</div>
 	{#if guess}
-		<p class="text-xl font-black uppercase {guess === answer ? 'text-green-700' : 'text-red-700'}">
-			{guess === answer ? "Correct!" : "Wrong!"} It's #{String(pokedex[answer]).padStart(3, "0")} {answer}!
+		<p class="font-bold {guess === answer ? 'text-green-700' : 'text-red-700'}">
+			{guess === answer ? "Correct!" : "Wrong!"} It's #{String(pokedex[answer]).padStart(3, "0")} <span class="capitalize">{answer}</span>!
 		</p>
 		<button class="btn mt-2" onclick={round}>Next Pokémon &gt;&gt;</button>
 	{:else}
@@ -53,5 +53,5 @@
 			{#each choices as name (name)}<button class="btn justify-center capitalize" onclick={() => pick(name)}>{name}</button>{/each}
 		</div>
 	{/if}
-	<p class="mt-4 font-mono text-sm">SCORE: {score} | STREAK: {streak} | BEST: {best}</p>
+	<p class="mt-4 font-mono">SCORE: {score} | STREAK: {streak} | BEST: {best}</p>
 </div>

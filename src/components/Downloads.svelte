@@ -6,7 +6,7 @@
 		{ name: "pokecursors.zip", description: "12 animated cursors for Windows. Your mouse becomes a Pikachu!", size: 96 },
 		{ name: "poke_screensaver.zip", description: "Screen saver with flying Poké Balls. Better than the pipes one!!", size: 1_210 },
 		{ name: "pokerap_FULL.mp3", description: "The Pokérap, all 150 Pokémon. Found it on Napster, 128 kbps", size: 3_560 },
-		{ name: "pokestore_toolbar.exe", description: "The official Pokéstore Toolbar for Internet Explorer 5! (100% no spyware)", size: 643 },
+		{ name: "pokestore_toolbar.exe", description: "The official Pokéstore Toolbar for Internet Explorer 5! Search the shop from your browser!", size: 643 },
 	];
 	const failures = [
 		"Connection lost!!! Someone picked up the phone.",
@@ -41,15 +41,15 @@
 	const minutes = (kilobytes: number) => Math.ceil(kilobytes / 4.5 / 60);
 </script>
 
-<table class="w-full border-2 border-navy bg-white text-sm [&_td]:border [&_td]:border-silver [&_td]:p-2">
-	<thead class="bg-navy text-white"><tr><th>File</th><th>Size</th><th class="max-sm:hidden">56k</th><th></th></tr></thead>
+<table class="panel w-full [&_td]:p-2 [&_tbody_tr:nth-child(even)]:bg-row2 [&_tbody_tr:nth-child(odd)]:bg-row1">
+	<thead><tr><th class="cathead">File</th><th class="cathead">Size</th><th class="cathead max-sm:hidden">56k</th><th class="cathead"></th></tr></thead>
 	<tbody>
 		{#each files as file (file.name)}
 			<tr>
-				<td><b class="font-mono break-all">{file.name}</b><br /><span class="text-xs">{file.description}</span></td>
+				<td><b class="font-mono break-all">{file.name}</b><br /><span class="text-[11px]">{file.description}</span></td>
 				<td class="text-center whitespace-nowrap">{file.size >= 1000 ? `${(file.size / 1000).toFixed(1)} MB` : `${file.size} KB`}</td>
 				<td class="text-center whitespace-nowrap max-sm:hidden">~{minutes(file.size)} min</td>
-				<td class="text-center"><button class="btn text-xs" onclick={() => download(file.name, file.size)}>Download</button></td>
+				<td class="text-center"><button class="btn text-[11px]" onclick={() => download(file.name, file.size)}>Download</button></td>
 			</tr>
 		{/each}
 	</tbody>
@@ -60,7 +60,7 @@
 		<div class="titlebar"><span>{current.error ? "Error" : `${Math.floor((current.done / current.size) * 100)}% of ${current.name}`}</span><button class="btn px-1 py-0 text-xs" onclick={close} aria-label="Close">x</button></div>
 		<div class="p-3 text-xs">
 			{#if current.error}
-				<p class="mb-3 flex items-center gap-2"><span class="text-2xl">⚠️</span>{current.error}</p>
+				<p class="mb-3"><b>Error:</b> {current.error}</p>
 				<div class="flex justify-center gap-2"><button class="btn" onclick={() => current && download(current.name, current.size)}>Retry</button><button class="btn" onclick={close}>Cancel</button></div>
 			{:else}
 				<p>Saving: <b>{current.name}</b> from www.pokestore-2000.com</p>

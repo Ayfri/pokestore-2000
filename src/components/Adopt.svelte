@@ -10,19 +10,21 @@
 	);
 </script>
 
-<div class="box bg-mint text-center">
-	<h3 class="mb-2 text-xl font-bold">🥚 Adopt a Pokémon! 🥚</h3>
-	<p class="mb-3 text-sm">Pick a baby Pokémon, give it a name, and put it on your homepage. Please take good care of it!!</p>
-	<div class="flex flex-wrap justify-center gap-2">
-		{#each babies as baby (baby)}
-			<button class={["btn h-16 w-16 justify-center", chosen === baby && "bg-yellow-300"]} onclick={() => (chosen = baby)} aria-label="Adopt {baby}">
-				<img src="/gifs/{baby}.gif" alt="" class="max-h-12" />
-			</button>
-		{/each}
+<section class="panel text-center">
+	<h3 class="cathead">Adopt a Pokémon!</h3>
+	<div class="p-2">
+		<p class="mb-2">Pick a baby Pokémon, give it a name, and put it on your homepage. Please take good care of it!!</p>
+		<div class="flex flex-wrap justify-center gap-2">
+			{#each babies as baby (baby)}
+				<button class={["btn h-16 w-16 justify-center", chosen === baby && "bg-yellow-300"]} onclick={() => (chosen = baby)} aria-label="Adopt {baby}">
+					<img src="/gifs/{baby}.gif" alt="" class="max-h-12" />
+				</button>
+			{/each}
+		</div>
+		{#if chosen}
+			<label class="mt-2 block font-bold">Nickname: <input bind:value={nickname} maxlength="10" class="border-2 border-gray-500 bg-white p-1 font-normal [border-style:inset]" /></label>
+			<p class="mt-2">Copy this code to your page:</p>
+			<textarea readonly class="h-20 w-full border-2 border-gray-500 bg-white p-1 font-mono text-[11px]" onfocus={event => event.currentTarget.select()}>{code}</textarea>
+		{/if}
 	</div>
-	{#if chosen}
-		<label class="mt-3 block text-sm font-bold">Nickname: <input bind:value={nickname} maxlength="10" class="border-2 border-gray-500 bg-white p-1 font-normal [border-style:inset]" /></label>
-		<p class="mt-3 text-sm">Copy this code to your page:</p>
-		<textarea readonly class="h-20 w-full border-2 border-gray-500 bg-white p-1 font-mono text-xs" onfocus={event => event.currentTarget.select()}>{code}</textarea>
-	{/if}
-</div>
+</section>

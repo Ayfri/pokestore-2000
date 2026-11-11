@@ -56,18 +56,18 @@
 
 <div class="win mx-auto max-w-lg">
 	<div class="titlebar"><span>Which Pokémon Are You? - Quiz {current ? `${picks.length + 1}/${questions.length}` : "RESULTS"}</span><span>x</span></div>
-	<div class="bg-white p-4">
+	<div class="bg-white p-3">
 		{#if current}
-			<p class="mb-3 text-lg font-bold">{current.question}</p>
+			<p class="mb-3 font-bold">{current.question}</p>
 			<div class="grid gap-2">
 				{#each current.answers as [label, pick] (label)}<button class="btn justify-start" onclick={() => picks.push(pick)}>{label}</button>{/each}
 			</div>
 		{:else if result}
-			<p class="text-center text-xl font-black">You are... <span class="rainbow uppercase">{result}</span>!!!</p>
+			<p class="logo-text text-center text-[22px]">You are <span class="capitalize">{result}</span>!</p>
 			<img src="/gifs/{result}.gif" alt={result} class="mx-auto my-4 h-24" />
 			<p class="mb-4">{results[result]}</p>
-			<p class="text-sm font-bold">Put your result on YOUR homepage! Copy &amp; paste this code:</p>
-			<textarea readonly class="h-24 w-full border-2 border-gray-400 p-1 font-mono text-xs" onfocus={event => event.currentTarget.select()}>{code}</textarea>
+			<p class="font-bold">Put your result on YOUR homepage! Copy &amp; paste this code:</p>
+			<textarea readonly class="h-24 w-full border-2 border-gray-400 p-1 font-mono text-[11px]" onfocus={event => event.currentTarget.select()}>{code}</textarea>
 			<button class="btn mx-auto mt-2" onclick={() => (picks = [])}>Take it again!</button>
 		{/if}
 	</div>

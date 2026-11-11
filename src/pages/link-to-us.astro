@@ -1,25 +1,42 @@
 ---
+import { Image } from "astro:assets";
+import banner from "../assets/montages/banner.webp";
+import button from "../assets/montages/button.webp";
 import Adopt from "../components/Adopt.svelte";
 import Gif from "../components/Gif.astro";
 import Layout from "../layouts/Layout.astro";
 
-const code = `<a href="http://www.pokestore-2000.com"><img src="http://www.pokestore-2000.com/gifs/pokeball.gif" border="0"> Pokéstore 2000 - Rare Pokémon Cards!</a>`;
+const site = "http://www.pokestore-2000.com";
+const buttonCode = `<a href="${site}"><img src="${site}/images/button.gif" width="88" height="31" border="0" alt="Pokéstore 2000"></a>`;
+const bannerCode = `<a href="${site}"><img src="${site}/images/banner.gif" width="468" height="60" border="0" alt="Pokéstore 2000 - Rare Pokémon Cards!"></a>`;
 ---
 
 <Layout title="Link to Us!">
-	<p class="mb-6 text-center">Like my site? Put a link on YOUR homepage!!! Link to me and I'll link back, just <a href="mailto:webmaster@pokestore-2000.com?subject=LINK EXCHANGE">email me</a> your URL.</p>
-	<div class="grid gap-6 md:grid-cols-2">
-		<section class="box bg-white text-center">
-			<h3 class="mb-3 text-xl font-bold">Our Button</h3>
-			<span class="badge mx-auto border-yellow-500 bg-red-600 text-yellow-300"><span class="flex items-center gap-1"><Gif name="pokeball" class="h-3" />POKÉSTORE</span>2000</span>
-			<p class="my-3 text-sm">Copy &amp; paste this HTML code:</p>
-			<textarea readonly class="h-24 w-full border-2 border-gray-500 bg-white p-1 font-mono text-xs [border-style:inset]">{code}</textarea>
-			<p class="mt-2 text-xs text-gray-600">Please don't hotlink the GIF, save it to your own server! (right-click is disabled tho... email me for it)</p>
+	<p class="mb-3">Like my site? Put a link on YOUR homepage!!! Link to me and I'll link back, just <a href="mailto:webmaster@pokestore-2000.com?subject=LINK EXCHANGE">email me</a> your URL. The banner and the button were made by Gengar_FX!</p>
+	<div class="grid gap-3">
+		<section class="panel text-center">
+			<h3 class="cathead">Our Banner</h3>
+			<div class="p-2">
+				<Image src={banner} alt="Pokéstore 2000 - Rare cards, boosters, trades. Click here!" width={468}format="avif" quality={90} class="mx-auto h-auto max-w-full" />
+				<p class="my-2">Copy &amp; paste this HTML code:</p>
+				<textarea readonly class="h-20 w-full border-2 border-gray-500 bg-white p-1 font-mono text-[11px] [border-style:inset]">{bannerCode}</textarea>
+			</div>
 		</section>
-		<Adopt client:visible={{ rootMargin: "200px" }} />
+		<div class="grid gap-3 md:grid-cols-2">
+			<section class="panel text-center">
+				<h3 class="cathead">Our Button</h3>
+				<div class="p-2">
+					<Image src={button} alt="Pokéstore 2000" width={88}format="avif" quality={90} class="mx-auto" />
+					<p class="my-2">Copy &amp; paste this HTML code:</p>
+					<textarea readonly class="h-24 w-full border-2 border-gray-500 bg-white p-1 font-mono text-[11px] [border-style:inset]">{buttonCode}</textarea>
+					<p class="mt-2 text-[11px] text-gray-600">Please don't hotlink the images, save them to your own server! (right-click is disabled tho... email me for them)</p>
+				</div>
+			</section>
+			<Adopt client:visible={{ rootMargin: "200px" }} />
+		</div>
 	</div>
 	<hr />
-	<p class="text-center text-sm">
-		<Gif name="abra" class="inline h-8" /> Sites linking to us: <b>47</b> and counting! Proud member of the <b>PokéWebRing</b> and <b>Kanto Trainers Ring</b>.
+	<p class="text-center">
+		<Gif name="abra" class="inline h-6" /> Sites linking to us: <b>47</b> and counting! Proud member of the <b>PokéWebRing</b> and <b>Kanto Trainers Ring</b>.
 	</p>
 </Layout>

@@ -177,12 +177,12 @@
 </script>
 
 <div class="win mx-auto w-72 text-left">
-	<div class="titlebar"><span>♫ Media Player</span><span>_ □ x</span></div>
+	<div class="titlebar"><span>Media Player</span><span>_ x</span></div>
 	<div class="m-1 overflow-hidden bg-black px-1 font-mono text-xs text-green-400">
 		{#if playing}<marquee scrollamount="3">Now playing: pokestore_theme_FINAL_v3.mid ({duration}) - [{section}] - 22 kHz MIDI SOUND!!</marquee>{:else}Stopped - pokestore_theme_FINAL_v3.mid ({duration}){/if}
 	</div>
 	<div class="flex items-end gap-1 px-1">
-		<button class="btn px-2 py-0 text-xs" onclick={toggle}>{playing ? "■ Stop" : "▶ Play"}</button>
+		<button class="btn px-2 py-0 text-xs" onclick={toggle}>{playing ? "Stop" : "Play"}</button>
 		<div class="flex h-5 flex-1 items-end gap-px bg-black p-px" aria-hidden="true">
 			{#each [0.45, 0.3, 0.6, 0.35, 0.5, 0.25, 0.55, 0.4] as speed}
 				<span class={["eq w-full bg-linear-to-t from-green-500 to-yellow-300", playing && "playing"]} style:animation-duration="{speed}s"></span>

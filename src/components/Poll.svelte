@@ -27,18 +27,18 @@
 </script>
 
 <div class="win">
-	<div class="titlebar">★ POKÉ-POLL ★</div>
-	<div class="bg-white p-3 text-sm">
+	<div class="titlebar">Poké-Poll</div>
+	<div class="bg-white p-2">
 		<p class="mb-2 font-bold">What is the BEST starter Pokémon???</p>
 		{#if vote}
 			{#each options as option, i (option.name)}
 				{@const percent = Math.round((counts[i]! / total) * 100)}
 				<p class="mt-1 flex items-center gap-1"><img src="/gifs/{option.sprite}.gif" alt="" class="h-5" />{option.name} {option.name === vote ? "(your vote!)" : ""}</p>
-				<div class="flex items-center gap-1 text-xs">
+				<div class="flex items-center gap-1 text-[11px]">
 					<span class="h-3 border border-black bg-linear-to-r from-red-500 to-yellow-300" style:width="{percent}%"></span>{percent}%
 				</div>
 			{/each}
-			<p class="mt-2 text-center text-xs text-gray-600">{total} votes since 03/2000 - Thanks for voting!</p>
+			<p class="mt-2 text-center text-[11px] text-gray-600">{total} votes since 03/2000 - Thanks for voting!</p>
 		{:else}
 			<form onsubmit={submit} class="grid gap-1">
 				{#each options as option (option.name)}

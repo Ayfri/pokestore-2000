@@ -16,8 +16,8 @@ export const pokemon = Object.keys(pokedex) as Pokemon[];
 /** Ball sprites are hand-converted item PNGs, so the downloader leaves them alone. */
 const balls = ["pokeball", "greatball", "ultraball", "masterball"] as const;
 
-/** Real GeoCities clip art found with `bun gifcities`, re-optimized with gifsicle. */
-const clipart = ["fire", "welcome", "rainbow"] as const;
+/** Real GeoCities clip art found with `bun gifcities`, re-optimized with gifsicle. Listed here so the GIF gallery shows every GIF of the site. */
+const clipart = ["fire", "welcome", "rainbow", "stars"] as const;
 
 export type Sprite = Pokemon | (typeof balls)[number] | (typeof clipart)[number];
 export const sprites: Sprite[] = [...pokemon, ...balls, ...clipart];

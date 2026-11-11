@@ -8,7 +8,7 @@ type Verdict = "REAL" | "FAKE" | "???";
 const verdicts: Record<Verdict, string> = {
 	REAL: "border-green-700 text-green-700",
 	FAKE: "border-red-700 text-red-700",
-	"???": "border-yellow-600 text-yellow-600",
+	"???": "border-yellow-600 text-yellow-800",
 };
 
 const rumors: [title: string, text: string, verdict: Verdict, sprite: Sprite][] = [
@@ -64,19 +64,22 @@ const rumors: [title: string, text: string, verdict: Verdict, sprite: Sprite][] 
 ---
 
 <Layout title="Pokémon Secrets & Rumors">
-	<p class="mb-6 border-2 border-dashed border-red-600 bg-white p-3 text-center">
-		<Gif name="gengar" /> I tested EVERY rumor on my own Game Boy so you don't have to. Know a rumor I missed?
-		<a href="mailto:webmaster@pokestore-2000.com?subject=RUMOR">Email it to me!</a> <Gif name="gengar" />
+	<p class="mb-3 notice">
+		I tested EVERY rumor on my own Game Boy so you don't have to. Know a rumor I missed?
+		<a href="mailto:webmaster@pokestore-2000.com?subject=RUMOR">Email it to me!</a>
 	</p>
-	<div class="grid gap-4">
+	<div class="grid gap-3">
 		{rumors.map(([title, text, verdict, sprite]) => (
-			<section class="box relative bg-white">
-				<span class:list={["absolute top-2 right-2 rotate-12 border-4 px-2 font-wordart text-2xl [border-style:double]", verdicts[verdict]]}>{verdict}</span>
-				<h3 class="mb-2 flex items-center gap-2 pr-20 text-lg font-bold text-navy"><Gif name={sprite} class="h-8" />{title}</h3>
-				<p class="text-sm">{text}</p>
+			<section class="panel">
+				<h3 class="cathead flex items-center gap-2">
+					<Gif name={sprite} class="h-4" />
+					<span class="flex-1">{title}</span>
+					<span class:list={["border bg-white px-1 [text-shadow:none]", verdicts[verdict]]}>{verdict}</span>
+				</h3>
+				<p class="p-2">{text}</p>
 			</section>
 		))}
 	</div>
 	<hr />
-	<p class="text-center text-sm">People who believed the truck rumor: <b class="font-led text-xl text-red-600">2,874,519</b> (including me)</p>
+	<p class="text-center">People who believed the truck rumor: <b class="font-led text-xl text-red-600">2,874,519</b> (including me)</p>
 </Layout>
