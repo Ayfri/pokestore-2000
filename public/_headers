@@ -1,0 +1,7 @@
+# Workers static assets default to max-age=0 (revalidate on every use). /_astro/* names are content-hashed, so they never change.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sprites keep stable names, so they get a week instead of forever.
+/gifs/*
+  Cache-Control: public, max-age=604800
