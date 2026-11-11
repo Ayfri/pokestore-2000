@@ -1,0 +1,10 @@
+---
+import CartTable from "../components/CartTable.svelte";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Your Shopping Cart">
+	<CartTable client:only="svelte" />
+	<hr />
+	<p class="text-center text-xs">Secure Payment - We accept Pokédollars, Berries and TMs!</p>
+</Layout>

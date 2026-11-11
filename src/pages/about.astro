@@ -1,0 +1,39 @@
+---
+import Gif from "../components/Gif.astro";
+import type { Sprite } from "../data";
+import Layout from "../layouts/Layout.astro";
+
+const team: [name: string, role: string, sprite: Sprite][] = [
+	["Ash", "Founder", "pikachu"],
+	["Gary", "Card Expert", "charmander"],
+	["Misty", "Customer Support", "squirtle"],
+	["Brock", "Shipping Manager", "geodude"],
+];
+---
+
+<Layout title="About Us">
+	<div class="box space-y-4">
+		<h3 class="text-xl font-bold">Our Story</h3>
+		<p>Welcome to Pokéstore 2000! We started this website in the year 2000 to share our passion for Pokémon cards with trainers around the world.</p>
+		<p>
+			Founded by a group of dedicated Pokémon card collectors, our shop was born out of a love for the trading card game. What started as a small
+			collection among friends has grown into the premier destination for rare and high-quality Pokémon cards.
+		</p>
+		<div class="border-2 border-yellow-400 bg-yellow-100 p-4">
+			<p class="text-center font-bold">🌟 Site Awards 🌟</p>
+			<ul class="ml-6 list-disc">
+				<li>Best Pokémon Site 2000 - PokéWebRing</li>
+				<li>Cool Site of the Day - March 15, 2000</li>
+				<li>Featured Pokémon Fan Page - Kanto Region</li>
+			</ul>
+		</div>
+		<div class="border-2 border-blue-400 bg-blue-100 p-4">
+			<h3 class="mb-2 text-lg font-bold">Meet Our Team</h3>
+			<div class="flex flex-wrap justify-center gap-6 text-center">
+				{team.map(([name, role, sprite]) => (
+					<div><Gif name={sprite} class="mx-auto h-16" /><b>{name}</b><p class="text-xs">{role}</p></div>
+				))}
+			</div>
+		</div>
+	</div>
+</Layout>

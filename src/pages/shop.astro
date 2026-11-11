@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import AddToCart from "../components/AddToCart.svelte";
+import Gif from "../components/Gif.astro";
+import { cards, price } from "../data";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Card Shop">
+	<p class="mb-4 border border-yellow-500 bg-yellow-100 p-2 text-center font-bold"><Gif name="charizard" /> Flash Sale - Limited Time Only! <Gif name="charizard" /></p>
+	<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+		{cards.map(card => (
+			<article class="box relative">
+				<Gif name={card.sprite} class="absolute top-0 left-0 z-10 h-10" />
+				<span class="absolute top-6 right-6 -rotate-6 border border-yellow-600 bg-yellow-300 px-2 text-sm font-bold">{card.rarity}</span>
+				<Image src={card.image} alt={card.name} width={245} height={342} densities={[1, 2]} format="avif" class="mx-auto" />
+				<h3 class="rainbow mt-4 text-xl font-bold">{card.name}</h3>
+				<div class="mt-2 flex items-center justify-between">
+					<b class="text-lg text-green-700">{price(card.price)}</b>
+					<AddToCart client:idle id={card.id} />
+				</div>
+				<p class="mt-2 text-center text-xs text-red-600">Limited Edition!</p>
+			</article>
+		))}
+	</div>
+	<hr />
+	<p class="text-center font-bold">New Shipment Arriving Soon! <span class="font-normal text-red-600">Pre-order now for a special discount!</span></p>
+</Layout>

@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import Gif from "../components/Gif.astro";
+import { cards } from "../data";
+import Layout from "../layouts/Layout.astro";
+
+const charizard = cards[1]!;
+const news = [
+	["03/15/2000", "New Charizard cards in stock! 🔥"],
+	["03/10/2000", "Website now optimized for Internet Explorer 5.0!"],
+	["03/05/2000", "Added new Guestbook feature - Sign it!"],
+];
+---
+
+<Layout title="Your #1 Pokémon Cards Source!">
+	<div class="grid gap-8 md:grid-cols-2">
+		<section class="box border-purple-300 bg-linear-to-r from-purple-100 to-pink-100">
+			<h3 class="mb-4 text-xl font-bold"><Gif name="porygon" /> Latest News</h3>
+			{news.map(([date, text]) => (
+				<p class="mb-4 border-b-2 border-purple-200 pb-2"><b class="block text-blue-700">{date}</b>{text}</p>
+			))}
+		</section>
+		<section class="box bg-linear-to-r from-red-100 to-yellow-100 text-center">
+			<h3 class="mb-4 text-left text-xl font-bold"><Gif name="charizard" /> Featured Card</h3>
+			<a href="/shop">
+				<Image src={charizard.image} alt={charizard.name} width={245} height={342} densities={[1, 2]} format="avif" class="mx-auto mb-4 rounded border-4 border-yellow-400 transition hover:scale-105 hover:rotate-2" />
+			</a>
+			<p class="animate-blink text-xl font-bold text-red-600">HOT ITEM!</p>
+		</section>
+	</div>
+	<div class="mt-8 bg-[repeating-linear-gradient(45deg,#000_0_10px,#ff0_10px_20px)] p-4">
+		<p class="bg-yellow-100 p-4 text-center text-xl font-bold"><span class="rainbow">More features coming soon!</span></p>
+	</div>
+</Layout>

@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans: "MS Sans Serif", "Microsoft Sans Serif", "Comic Sans MS", sans-serif;
+	--shadow-retro: 3px 3px 6px #0006;
+	--animate-blink: blink 1s step-end infinite;
+	--animate-rainbow: rainbow 5s linear infinite;
+
+	@keyframes blink {
+		50% { opacity: 0; }
+	}
+	@keyframes rainbow {
+		to { filter: hue-rotate(360deg); }
+	}
+}
+
+body {
+	@apply bg-[#000080] bg-[url(/gifs/stars.gif)] p-4 font-sans;
+}
+
+hr {
+	@apply my-4 h-1 border-0 bg-linear-to-r from-red-500 via-yellow-400 to-blue-500;
+}
+
+/* Win98 bevel: light top-left edge, dark bottom-right, flipped while pressed. */
+@utility btn {
+	@apply inline-flex cursor-pointer items-center gap-1 border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 bg-gray-300 px-3 py-1 font-bold text-black no-underline active:border-t-gray-600 active:border-l-gray-600 active:border-r-white active:border-b-white;
+}
+
+@utility box {
+	@apply border-2 border-gray-400 bg-white p-4 shadow-retro;
+}
+
+@utility rainbow {
+	@apply animate-rainbow bg-linear-to-r from-red-500 via-green-500 to-violet-500 bg-clip-text text-transparent;
+}

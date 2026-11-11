@@ -1,0 +1,49 @@
+---
+import Gif from "../components/Gif.astro";
+import type { Sprite } from "../data";
+import Layout from "../layouts/Layout.astro";
+
+const links: [title: string, description: string, sprite: Sprite][] = [
+	["PokéWebRing", "Join our webring of Pokémon websites!", "charmander"],
+	["Gary's Gym", "Check out Gary's awesome Pokémon gym!", "squirtle"],
+	["Pokémon Card Database", "The biggest database of Pokémon cards online!", "pikachu"],
+	["Red's Pokémon Journey", "Follow Red's journey through Kanto region!", "bulbasaur"],
+];
+const clubs: [name: string, description: string, sprite: Sprite, members: number][] = [
+	["Psyduck Fanclub", "For fans of the confused duck Pokémon!", "psyduck", 342],
+	["Jigglypuff Singers", "Share your favorite Jigglypuff songs", "jigglypuff", 189],
+	["Pikachu World", "The #1 site for Pikachu lovers!", "pikachu", 1024],
+	["Psychic Alliance", "Mew and Mewtwo fans unite", "mewtwo", 567],
+	["Fire Types United", "Hot site for fire Pokémon trainers", "charizard", 455],
+	["Grass Kingdom", "Growing community of grass Pokémon lovers", "bulbasaur", 386],
+	["Water Trainers Club", "Dive into water Pokémon discussions!", "staryu", 478],
+	["Legendary Hunters", "Tracking rare and legendary Pokémon", "mew", 122],
+];
+---
+
+<Layout title="Cool Pokémon Links">
+	<p class="mb-6 border border-yellow-400 bg-yellow-100 p-2 text-center"><Gif name="porygon" /> Want to exchange links? Email the webmaster!</p>
+	<div class="grid gap-4">
+		{links.map(([title, description, sprite]) => (
+			<a href="#" class="box flex items-center gap-4">
+				<Gif name={sprite} class="size-12 bg-blue-100 object-contain p-1" />
+				<span><b class="text-xl text-blue-600 underline">{title}</b><br />{description}</span>
+			</a>
+		))}
+	</div>
+	<h3 class="mt-8 text-center text-xl font-bold">★ Pokémon Fan Clubs ★</h3>
+	<hr />
+	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+		{clubs.map(([name, description, sprite, members]) => (
+			<div class="box bg-linear-to-b from-blue-50 to-purple-50 text-center text-xs">
+				<Gif name={sprite} class="mx-auto h-12" />
+				<b class="text-sm">{name}</b>
+				<p class="my-1">{description}</p>
+				<span class="rounded-full bg-blue-100 px-2 text-blue-800">Members: {members}</span>
+			</div>
+		))}
+	</div>
+	<p class="mt-8 border border-yellow-300 bg-yellow-100 p-2 text-center text-sm">
+		<Gif name="geodude" class="inline h-4" /> This page is always under construction! Check back later for more links!
+	</p>
+</Layout>

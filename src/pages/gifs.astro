@@ -1,0 +1,17 @@
+---
+import Gif from "../components/Gif.astro";
+import { sprites } from "../data";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Pokémon GIF Collection">
+	<p class="mb-4 border border-yellow-400 bg-yellow-100 p-2 text-center">All these GIFs are free to use for your personal website!</p>
+	<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
+		{sprites.map(name => (
+			<figure class="box text-center transition hover:scale-105 hover:rotate-2">
+				<Gif name={name} class="mx-auto h-16" />
+				<figcaption class="mt-1 text-xs font-bold">{name}.gif</figcaption>
+			</figure>
+		))}
+	</div>
+</Layout>

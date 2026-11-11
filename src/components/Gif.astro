@@ -1,0 +1,12 @@
+---
+import { type Sprite, spriteUrl } from "../data";
+
+interface Props {
+	name: Sprite;
+	class?: string;
+}
+
+const { name, class: className = "inline h-6" } = Astro.props;
+---
+
+<img src={spriteUrl(name)} alt={name} class={className} loading="lazy" decoding="async" />

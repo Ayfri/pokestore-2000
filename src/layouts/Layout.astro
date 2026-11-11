@@ -1,0 +1,91 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/pokestore.webp";
+import CartCount from "../components/CartCount.svelte";
+import Gif from "../components/Gif.astro";
+import type { Sprite } from "../data";
+import "../styles.css";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+const description = "Welcome to Pokéstore 2000! The #1 destination for rare and collectible Pokémon cards.";
+const nav: [href: string, label: string, sprite: Sprite][] = [
+	["/", "Home", "pikachu"],
+	["/shop", "Shop", "pokeball"],
+	["/guestbook", "Guestbook", "mew"],
+	["/about", "About", "jigglypuff"],
+	["/links", "Cool Links", "staryu"],
+	["/gifs", "GIF Gallery", "pichu"],
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>★☆★ {title} - Pokéstore 2000 ★☆★</title>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={`${title} - Pokéstore 2000`} />
+		<meta property="og:description" content={description} />
+		<meta name="theme-color" content="#000080" />
+		<link rel="icon" href="/gifs/pokeball.gif" />
+	</head>
+	<body>
+		<p class="mb-4 text-center text-xs text-white">
+			<Gif name="geodude" /> <span class="animate-blink">SITE UNDER CONSTRUCTION</span> <Gif name="geodude" />
+		</p>
+
+		<header class="box mb-8 border-4 border-double border-blue-700 bg-linear-to-r from-blue-100 to-purple-100">
+			<div class="mb-4 flex items-center justify-between gap-2">
+				<Gif name="pokeball" class="hidden h-12 sm:block" />
+				<a href="/" class="min-w-0"><Image src={logo} alt="Pokéstore 2000" height={80} densities={[1, 2]} format="avif" loading="eager" fetchpriority="high" /></a>
+				<a href="/cart" class="btn whitespace-nowrap"><Gif name="pikachu" />Cart (<CartCount client:only="svelte" />)</a>
+			</div>
+			<nav class="flex flex-wrap justify-center gap-2 bg-blue-200 p-2">
+				{nav.map(([href, label, sprite]) => (
+					<a {href} class:list={["btn", Astro.url.pathname === href && "bg-yellow-300"]}><Gif name={sprite} class="h-4" />{label}</a>
+				))}
+			</nav>
+			<marquee class="mt-4 bg-black p-1 font-bold text-yellow-300">
+				<Gif name="charizard" /> HOT DEAL! Buy any Charizard card and get a free Magikarp! Limited time offer! <Gif name="pichu" />
+			</marquee>
+		</header>
+
+		<main class="box bg-linear-to-r from-yellow-50 to-orange-50">
+			<h2 class="mb-6 flex items-center justify-center gap-4 text-2xl font-bold">
+				<Gif name="pokeball" class="h-8" /><span class="rainbow">{title}</span><Gif name="pokeball" class="h-8" />
+			</h2>
+			<slot />
+		</main>
+
+		<footer class="box mt-8 bg-linear-to-r from-green-100 to-blue-100 text-center text-xs">
+			<marquee behavior="alternate" class="font-bold text-red-600">★★★ THANK YOU FOR VISITING POKÉSTORE 2000! ★★★</marquee>
+			<div class="my-4 grid gap-2 sm:grid-cols-3 [&>div]:border [&>div]:border-blue-500 [&>div]:bg-blue-50 [&>div]:p-2 [&_b]:underline">
+				<div>
+					<b>SITE INFO</b>
+					<p class="mx-auto my-2 w-fit border-2 border-gray-500 bg-black px-2 font-mono text-green-400">HITS: 000012942</p>
+					<p>Last Updated: 08/27/2000</p>
+					<p>Download time: 56k - 8.2 sec</p>
+				</div>
+				<div>
+					<b>CONTACT US</b>
+					<p><a href="mailto:webmaster@pokestore-2000.com" class="text-blue-600 underline"><Gif name="porygon" />EMAIL</a></p>
+					<p><Gif name="pokeball" class="inline h-4" /> ICQ: 12345678</p>
+					<p><Gif name="magikarp" class="inline h-4" /> AIM: PokeStore2000</p>
+				</div>
+				<div>
+					<b>COPYRIGHT</b>
+					<p class="my-2">© 2000 Pokéstore. Pokémon and all related characters are © Nintendo / Game Freak.</p>
+					<p class="font-bold text-red-600">NO FRAMES • NO JAVA • NO FLASH</p>
+					<p class="opacity-50">v1.8.5 BETA</p>
+				</div>
+			</div>
+			<p class="text-gray-600">This page optimized for 800x600 resolution</p>
+			<p class="animate-blink text-blue-700">[ DOWNLOAD THE POKÉSTORE TOOLBAR NOW! ]</p>
+		</footer>
+	</body>
+</html>
